@@ -1,0 +1,153 @@
+{% extends 'blog/navigation/main.html' %}
+
+{% load static %}
+{% load social_share %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="container my-5 ">
+  <!-- search -->
+
+<h5 class="text-center text-light">Search Blog Post</h5>
+{% include 'blog/navigation/search.html' %}
+<!-- endsearch -->
+
+<!-- search blogs -->
+{% if searches %}
+{% for search in searches %}
+<div class="shadow p-5 mb-5 bg-light rounded">
+  <div class="row">
+    <div class="col-md-6">
+      
+      <div class="text-center mt-3 w-70 mx-auto">
+        <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ search.image.url }}" alt="responsive" style="width: 400px; height: 400px;">
+        <small class="bg-light ">{{ search.title|safe}} | {{ search.post_date }}</small>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="display-4 lead">{{ search.title|safe }}</h3>
+      <p class="lead text-justify">{{ search.post_body |safe}}</p>
+      
+      <!-- message and like -->
+      {% if user.is_authenticated %}
+      <div class="mt-4">
+        <div class="d-flex align-items-center">
+          <a href="#comment" class="btn btn-primary me-3">
+            <span class="text-white">Messages</span>
+            <span class="badge bg-dark">{{ comment_no }}</span>
+          </a>
+          
+          <form action="{% url 'liked_post' search.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="like" value="{{ search.id }}">
+            {% if user not in blog.liked.all %}
+              <button class="btn btn-danger" type="submit">Like
+                <span class="badge bg-dark">{{ search.liked.all.count }}</span>
+              </button>
+            {% else %}
+              <button class="btn btn-info" type="submit">Unlike
+                <span class="badge bg-dark">{{ search.liked.all.count }}</span>
+              </button>
+            {% endif %}
+          </form>
+          <!-- copy link -->
+          <div class="mx-3">
+            <!-- django-social-share -->
+            <button id="copyButton" class="btn btn-secondary">Copy Link</button>
+            <span id="url" style="display: none;">{{ request.build_absolute_uri }}</span>
+            <!-- end -->
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <!-- end of message and like -->
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endif %}
+<!-- end search -->
+
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card shadow">
+        <div class="card-body mb-5">
+          {% for blog in page_obj %}
+          <div class="mb-4">
+            <h3 class="mb-3 text-primary">{{ blog.title|safe }}</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="text-dark">{{ blog.post_body | truncatewords:200|safe }}</p>
+                <a href="{% url 'blog_details' blog.id %}" class="">Continue Reading</a>
+              </div>
+              <div class="col-lg-6 pt-2">
+                <img class="img-thumbnail" src="{{ blog.image.url }}" alt="Blog Image">
+                {% if user.is_staff %}
+                <a href="{% url 'deleteBlog' blog.id %}" class="btn btn-danger mt-2">Delete Post</a>
+                {% endif %}
+              </div>
+            </div>
+            <!-- message and like -->
+            {% if user.is_authenticated %}
+            <div class="mt-4">
+              <div class="d-flex align-items-center">
+                <a href="{% url 'blog_details' blog.id %}" class="btn btn-primary me-3">
+                  <span class="text-white">Comments</span>
+                  <span class="badge bg-dark">{{ comment_no }}</span>
+                </a>
+                <form action="{% url 'liked_post' blog.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="like" value="{{ blog.id }}">
+                  {% if user not in blog.liked.all %}
+                  <button class="btn btn-danger" type="submit">Like
+                    <span class="badge bg-dark">{{ blog.liked.all.count }}</span>
+                  </button>
+                  {% else %}
+                  <button class="btn btn-info" type="submit">Unlike
+                    <span class="badge bg-dark">{{ blog.liked.all.count }}</span>
+                  </button>
+                  {% endif %}
+                </form>
+                <!-- copy link -->
+                <div class="mx-3">
+                  <!-- django-social-share -->
+                  <a href="{% url 'blog_details' blog.id %}" class="btn btn-secondary" onclick="copyToClipboard()">Get the link</a>
+                  <span id="url" style="display: none;">{{ request.build_absolute_uri }}</span>
+                  <!-- end -->
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            <!-- end of message and like -->
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- pagination -->
+      <div class="text-center text-light mb-5 pt-5">
+        {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-outline-secondary">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+        {% endif %}
+        <span class="mx-3">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Last &raquo;</a>
+        {% endif %}
+      </div>
+      <!-- end of pagination -->
+    </div>
+    
+    {% include 'blog/navigation/prayersidenav.html' %}
+  </div>
+</div>
+
+{% include 'blog/navigation/dailyprayer.html' %}
+{% include 'blog/navigation/novena.html' %}
+{% include 'blog/navigation/footer.html' %}
+
+{% endblock %}
+

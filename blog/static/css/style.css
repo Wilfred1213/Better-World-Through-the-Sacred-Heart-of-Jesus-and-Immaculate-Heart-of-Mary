@@ -1,0 +1,90 @@
+html, body{
+  background-color: rgb(20, 71, 54);
+  height: auto;
+  max-width: 100%;
+  
+  }
+  .carousel-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 500px; /* Adjust the height as needed */
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .carousel-caption h5 {
+    color: #fff;
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-bottom: 10px;
+  }
+  
+  .carousel-caption p {
+    color: #fff;
+    font-size: 16px; /* Adjust the font size as needed */
+    margin-bottom: 0;
+    
+  }
+  
+  @media (max-width: 576px) {
+    .carousel-caption {
+      position: relative;
+      background-color: transparent;
+      padding: 0;
+      text-align: center;
+      color: white;
+    }
+  
+    .carousel-caption h5,
+    .carousel-caption p {
+      color: #000;
+      font-size: 18px; /* Adjust the font size as needed */
+    }
+  }
+
+  
+  .mb-4 {
+    margin-bottom: 2rem;
+  }
+
+  .text-primary {
+    color: #007bff;
+  }
+
+  .text-dark {
+    color: #343a40;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+
+  .btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+  }
+

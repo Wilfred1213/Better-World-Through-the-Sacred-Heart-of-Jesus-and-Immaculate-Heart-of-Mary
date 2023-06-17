@@ -1,0 +1,49 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title style ="font-size: 20px;">Better World Through Sacred Heart of Jesus and Mary{% block title %}{% endblock %}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script src="https://use.fontawesome.com/571aec1690.js"></script>
+
+
+    <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="/static/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/static/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="/static/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <link rel='stylesheet' href="{% static 'style.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+</head>
+<body>
+  <div class= "container bg-dark">
+      
+      <div class="lead text-center text-white mx-5 p-5">
+        <h2 class="text-info">{{ message.title|safe }}</h2>
+        <div class="col-md-6">
+        
+          <div class="text-center mt-3 w-70 mx-auto">
+            <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ message.news_img.url }}" alt="responsive" style="width: 400px; height: 400px;">
+            <small class="bg-light ">{{ message.title|safe}} | {{ message.date|date }}</small>
+            <hr>
+          </div>
+        </div>
+        <p class="text-justify">{{ message.letter|safe }}</p>
+        
+
+  </div>
+</body>

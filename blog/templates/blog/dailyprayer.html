@@ -1,0 +1,28 @@
+{% extends 'blog/navigation/main.html' %}
+<!-- {% include 'post_main.html' %} -->
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-md-5 mx-auto">
+    <h2 class="text-center text-white">Post Daily Prayer</h2>
+    <hr>
+    <div class="container bg-dark text-white">
+        <form action= "{% url 'dailyprayer' %}" method="post" class="mx-auto form-group">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br>
+            <input type="submit" value="Post">
+        </form>
+         
+    </div>
+
+<hr>
+<br>
+
+<a href="">Back to dashboard</a>
+<br>
+<hr>
+<br>
+</div>
+{% endblock %}

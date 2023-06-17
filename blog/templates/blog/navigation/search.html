@@ -1,0 +1,23 @@
+<!-- seaarch -->
+<div class="mx-auto text-center pt-0">
+    {% for message in messages %}
+    <div class="text-danger">
+        {{message}}
+    </div>
+    {% endfor %}
+  </div>
+  <!-- search form -->
+  <form action="." method="get">
+  <div class="input-group justify-content-center">
+  
+    <div class="form-outline">
+      <input name = "search" type="search" id="form1" class="form-control" placeholder="Search"/>
+      
+    </div>
+    <button id="search-button" type="submit" class="btn btn-primary mb-5">
+      <i class="fas fa-search"></i>
+    </button>
+  
+  </div>
+  </form>
+    <!-- end -->

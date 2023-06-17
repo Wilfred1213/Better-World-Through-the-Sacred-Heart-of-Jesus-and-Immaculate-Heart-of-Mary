@@ -1,0 +1,61 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+{% block title %}All Novena{% endblock %}
+
+{% block content %}
+<div class="container">
+  
+    <!-- image -->
+    
+  <div class="row justify-content-center mx-3 bg-light w-100">
+    <h3 class="text-center lead pt-5">{{ random.title }}</h3>
+    <div class="card col-sm-4 col-md-4 col-lg-4 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: 600px;">
+      <div class="card-img-bottom">
+        <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ random.image.url }}" style="width: 600px; height: auto" alt="Card Image">
+      </div>
+      <div class="card-footer justify-content-center align p-3 m-round">
+        <p class="lead">{{ random.post_body}}</p>
+        <p class="lead text-danger">Posted since: {{ random.post_date|date }}</p>
+      </div>
+    </div>
+  </div>
+  <h5 class="text-center text-light pt-5">Search Novena</h5>
+  {% include 'blog/navigation/search.html' %}
+{% if searches %}
+{% for search in searches %}
+
+<div class="row justify-content-center mx-3 bg-light w-100">
+  {% for search in searches %}
+  <div class="card col-sm-6 col-md-6 col-lg-6 col-xl-6 mx-3 lead my-5 justify-content-center" style="width: 500px;">
+    <!-- <div class="card text-center lead" style="width: 280px; "> -->
+      <div class="card-img-bottom">
+        <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ search.image.url }}" style="width: 500px; height:auto">
+      </div>
+      <div class="card-title">
+        <h5 class="text-center">{{ search.title }}</h5>
+        <hr>
+      </div>
+      <div class="card-text">
+        <p>{{search.post_body | truncatewords:30}}</p>
+      </div>
+    
+      <div class="text-danger">{{ search.post_date }}</div>
+      <hr>
+      <a href="{% url 'novena_details' search.id %}"><div class="btn btn-secondary addtocart" type="submit">Start Novena</div></a>
+       
+  </div>
+  {% endfor %}
+
+  
+  
+ {% endfor %} 
+ {% endif %}
+  <!-- end search -->
+  
+    <p class="text-light lead text-center">Select a Novena</p>
+    {% include 'blog/navigation/novena.html' %}
+
+</div>
+  
+{% include 'blog/navigation/footer.html' %}
+  {% endblock %}

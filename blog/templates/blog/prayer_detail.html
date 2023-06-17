@@ -1,0 +1,85 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+
+{% block title %}Prayer{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <!-- image -->
+  <div class="row justify-content-center mx-3 bg-light w-100">
+    <div class="card col-sm-4 col-md-4 col-lg-4 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: 500px;">
+      <div class="card-img-bottom">
+        <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ details.image.url }}" style="width: 500px; height: auto" alt="Card Image">
+      </div>
+      <div class="card-footer justify-content-center align p-3 m-round">
+        <p class="lead">{{ details.intro |safe}}</p>
+        <p class="lead text-danger">Posted since: {{ details.date_posted|date }}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+<!-- end -->
+
+<!-- seaarch -->
+<div class="mx-auto text-center pt-5">
+  {% for message in messages %}
+  <div class="text-danger">
+      {{message}}
+  </div>
+  {% endfor %}
+</div>
+<!-- search form -->
+<h5 class="text-center text-light">Search Prayers</h5>
+{% include 'blog/navigation/search.html' %}
+{% if searches %}
+{% for search in searches %}
+<div class="py-5 my-5 bg-light">
+  <div class="row justify-content-center">
+    
+    <div class="col-sm-8 col-md-6 col-lg-4 mx-2 my-2 p-3 bg-info shadow">
+      <div class="text-center text-white bg-dark py-2">
+        <h4>{{ search.title }}</h4>
+      </div>
+      <hr>
+      <p class="lead">{{ search.description }}.</p>
+      <hr>
+      <a href="{% url 'all_prayers' %}" class="btn btn-primary">Back to Prayers</a>
+    </div>
+    
+  </div>
+</div>
+{% endfor %}
+
+{% endif %}
+<!-- endsearch -->
+     
+  <!-- Beginning of prayers section -->
+  <div class="py-5 my-5 bg-light">
+    <div class="row justify-content-center">
+      
+      <div class="col-sm-8 col-md-6 col-lg-4 mx-2 my-2 p-3 bg-info shadow">
+        <div class="text-center text-white bg-dark py-2">
+          <h4>{{ details.title }}</h4>
+        </div>
+        <hr>
+        <p class="lead">{{ details.description }}.</p>
+        <hr>
+        <a href="{% url 'all_prayers' %}" class="btn btn-primary">Back to Prayers</a>
+      </div>
+      
+    </div>
+  </div>
+  <!-- End of prayers section -->
+  
+  <p class="col-md-6 col-sm-6 mx-auto" style="font-size: 2rem; color: bisque;">God Bless you <i class="bg-dark text-danger">{{user}}!</i> Will you like to pray Novena?<br>
+    <small style="text-shadow: 0cm; font-size: 1rem;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Be rest assured that you did not said <a href="{% url 'prayer_details' details.id %}">{{details.title}}</a> prayer in vein. God is our father, He answer every honest prayer!</small>
+  
+  </p>
+    {% include 'blog/navigation/novena.html' %}
+  {% include 'blog/navigation/footer.html' %}
+  
+</div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+<div class= "container bg-dark">
+    
+    <div class="lead text-center text-white mx-5 p-5">
+      <h2 class="text-info">{{dailyprayer.title|safe}}</h2>
+
+      <p>{{dailyprayer.prayer|safe}}</p>
+      {% if user.is_staff %}
+       <a href="{% url 'dailyprayer' %}" class="btn btn-outline-primary">Create Daily Prayer</a>
+      {% endif %}
+
+</div>

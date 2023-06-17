@@ -1,0 +1,42 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block tag %}
+<div class=" p-5">
+    <div class="col-md-6 mx-auto p-5 bg-dark text-white p-5">
+        <div class="shadow shadow-responsive shadow-info ">
+            {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if massage.tags %} class="{{ message.tags }}"
+                    {% endif %}> 
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method ="post" action="{% url 'authentications:signup' %}" >
+                {% csrf_token %}
+                <div class="mx-5">
+                  <input class="form-control me-2 p-2"  name= "username" type="text" placeholder="Username" aria-label="Search" required>
+                  <input class="form-control me-2 pt-2 my-3 "  name= "email" type="email" placeholder="Email" aria-label="Search" required>
+                  <input class="form-control me-2 pt-2 my-3"  name= "password1" type="password" placeholder="Password" aria-label="Search" required>
+                  <input class="form-control me-2 pt-2 my-3"  name= "password2" type="password" placeholder="Re-enter Passweord" aria-label="Search" required>
+                  <br>
+                  <div class="mx-3">
+                    <button class="btn btn-outline-success" type="submit">Signup</button>
+                    <a class="text-info mx-5" href="{% url 'authentications:loggin' %}">Already have account? Login!</a>
+                  </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% include 'blog/navigation/footer.html' %}
+{% endblock %}
+
+

@@ -1,0 +1,64 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+{% block title %}All Stations Of Cross{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- image -->
+    
+  <div class="row justify-content-center mx-3 bg-light w-100">
+    <h3 class="text-center lead pt-5">Jesus am sorry for my sins</h3>
+    <div class="card col-sm-4 col-md-4 col-lg-4 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: 600px;">
+      <div class="card-img-bottom">
+        <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ random.stationimages.station_img.url }}" style="width: 600px; height: auto" alt="Card Image">
+      </div>
+      <div class="card-footer justify-content-center align p-3 m-round">
+        <p class="lead">{{ stationintro.sation_intro|safe}}</p>
+        <p class="lead text-danger">Posted since: {{ stationintro.date|date }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- search -->
+  <h5 class="text-center text-light pt-5">Search Station</h5>
+  {% include 'blog/navigation/search.html' %}
+  {% if searches %}
+  {% for search in searches %}
+
+  <div class="row justify-content-center mx-3 bg-light w-100">
+    {% for search in searches %}
+    <div class="card col-sm-12 col-md-12 col-lg-6 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: auto;">
+      <!-- <div class="card text-center lead" style="width: 280px; "> -->
+        <div class="card-img-bottom">
+    
+          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ search.stationimages.station_img.url }}" style="width: 400px; height:auto">
+        </div>
+        <div class="card-title">
+          <h5 class="text-center">{{ search.letuspray.title|safe }}</h5>
+          <hr>
+        </div>
+        <div class="card-text">
+          <p>{{search.letuspray.heading | truncatewords:30|safe}}</p>
+        </div>
+      
+        <div class="text-danger">{{ search.letuspray.we_ador|truncatewords:15|safe }}</div>
+        <hr>
+        <a href="{% url 'station_details' search.title %}"><div class="btn btn-secondary addtocart mb-3" type="submit">Go to station</div></a>
+         
+    </div>
+    {% endfor %}
+
+    <!-- <div class="card-footer text-center align p-3 m-round">
+      <a href="{% url 'all_stations_cross' %}" class="btn btn-secondary lead">View all Stations</a>
+    </div>   -->
+</div>
+      
+  {% endfor %}
+  {% endif %}
+    <!-- end -->
+    <p class="text-light lead text-center">Select a Station</p>
+    {% include 'blog/navigation/main_station.html' %}
+
+</div>
+  
+{% include 'blog/navigation/footer.html' %}
+{% endblock %}

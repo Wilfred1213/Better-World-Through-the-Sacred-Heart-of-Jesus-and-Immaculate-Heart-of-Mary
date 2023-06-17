@@ -1,0 +1,103 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card bg-primary text-white mb-5">
+        <img class="card-img-top" src="{{ novenas.image.url }}" alt="{{ novenas.title }}" style="height:auto;">
+        <div class="card-body">
+          <h2 class="card-title text-center font-weight-bold text-uppercase text-light mb-4">{{ novenas.title }}</h2>
+          <p class="card-text text-center lead">{{ novenas.post_body|safe }}</p>
+          <div class="text-center text-dark font-weight-bold">Date Posted: {{ novenas.post_date }}</div>
+        </div>
+      </div>
+      <!-- Days go here -->
+      <div class="card text-white mb-5 mx-auto" style="font-size: 1.5rem; font-family: 'Tahoma', sans-serif; text-align: justify; background-color: rgb(133, 56, 8);">
+        <div class="card-body">
+          <h4 class="card-title font-weight-bold text-info text-center mb-4">Novena Days</h4>
+          {% for day in days %}
+          <div class="mb-4">
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 1</h5>
+            <hr class="">
+            <p class="mb-5">{{ day.day1 |safe }}</p>
+            
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 2</h5>
+            <hr class="">
+            <p class="pt-5">{{ day.day2 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 3</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day3 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 4</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day4 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 5</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day5 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 6</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day6 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 7</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day7 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 8</h5>
+            <hr class="">
+            <p class="card-text text-center">{{ day.day8 |safe }}</p>
+            <h5 class="card-subtitle text-muted text-center pt-5">Day 9</h5>
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ day.day9 |safe }}</p>
+          </div>
+          {% endfor %}
+        </div>
+  </div>
+
+      
+      <!-- Beginning of comments -->
+    <div class="card mb-5 " style="background-color: rgb(48, 39, 26);">
+      <div class="card-body">
+        <h4 class="card-title text-center font-weight-bold text-white">Comments</h4>
+        <hr>
+        {% if user.is_authenticated %}
+        <form method="post" enctype="multipart/form-data" id="comment" class="">
+          {% csrf_token %}
+          <div class="col-lg-8 mx-auto">
+            {{ form | crispy }}
+            <button type="submit" class="btn btn-primary btn-block">Comment</button>
+          </div>                
+        </form>
+        {% else %}
+        <a class="text-info mx-5" href="{% url 'authentications:loggin' %}">Loging to comment</a>
+        {% endif %}
+
+        <br>
+        <hr>
+        <br>
+
+        {% for comment in comments %}
+        <div class="card text-center text-dark bg-light mb-3">
+          <div class="card-body">
+            <p class="card-text text-justify">{{ comment.post_body }}</p>
+            <p class="card-text">Posted by: {{ comment.user }} | {{ comment.post_date }}</p>
+            {% if user.is_staff %}
+            <a href="{% url 'deleteNovenaComent' comment.id %}" class="text-danger">Delete Comment</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <br>
+        <hr>
+        <br>
+      </div>
+    </div>
+
+      <!-- End of comments -->
+    </div>
+  </div>
+  {% include 'blog/navigation/footer.html' %}
+</div>
+{% endblock %}

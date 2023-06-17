@@ -1,0 +1,48 @@
+{% extends 'blog/navigation/main.html' %}
+<!-- {% include 'post_main.html' %} -->
+
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<div class="col-md-12 col-lg-12 my-5 mx-5 justify-content-center">
+    <div class="mx-5 px-5">
+        <h2 class="text-white bg-dark text-center col-md-6 mx-auto">Send Message</h2>
+        <hr>
+
+        <form method="post" class="mx-auto col-md-6" action="{% url 'newsletter' %}" enctype ="multipart/form-data">
+            {% csrf_token %}
+            <div class="text-white">
+                {{ form.title | as_crispy_field }}
+            </div>
+            <div class="text-white">
+                {{ form.letter | as_crispy_field }}
+            </div>
+            <div class="custom-file-input text-white">
+                {{ form.image | as_crispy_field }}
+            </div>
+            
+            <br>
+            <input type="submit" value="Post" class="form-group">
+            <div class="col-lg-4">
+                <div class="mx-auto">
+                    {% for message in messages %}
+                    <div class="text-danger">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+        <br>
+        <hr>
+        <br>
+
+        <a href="">Back to dashboard</a>
+        <br>
+        <hr>
+        <br>
+    </div>
+</div>
+{% endblock %}

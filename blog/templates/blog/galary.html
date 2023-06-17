@@ -1,0 +1,54 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+
+<div class="mx-auto w-100 p-5">
+     
+  <!-- beggining of prayers -->
+  <div class="row justify-content-center mx-3 bg-light">
+    {% for galary in page_obj %}
+    <div class="card col-sm-4 mx-3 lead my-5 justify-content-center" style="width: 280px;">
+      <!-- <div class="card text-center lead" style="width: 280px; "> -->
+        <div class="card-img-bottom">
+          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ galary.image.url }}" style="width: 300px; height:300px">
+        </div>
+        
+    </div>
+    {% endfor %}
+
+  <!-- end of prayers -->
+    
+  <!-- begining of paginations -->
+  <center>
+    <id class="container mx-auto">
+    <div class="text-dark mx-5" style="font-size: 1.62rem;">
+    <br><br>
+    <!-- has page: {{page_obj}}<br> -->
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo First</a>
+    <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+    {% endif %}
+    <span>{{ page_obj.number }} of {{page_obj.paginator.num_pages}}</span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next Page</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">Last
+      &raquo
+    </a>
+    {% endif %}
+  </div>
+</div>
+  </center>
+  <br>
+
+
+  <!-- end of paginations -->
+  {% include 'blog/navigation/footer.html' %}
+</div>
+
+
+
+{% endblock %}

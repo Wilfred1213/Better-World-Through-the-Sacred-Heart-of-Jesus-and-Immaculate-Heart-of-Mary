@@ -1,0 +1,35 @@
+<!-- Side Navigation -->
+<div class="col-md-3 mt-4 mt-md-0">
+  <div class="card mb-3">
+    {% for prayer in prayers %}
+    <div class="card-header bg-primary text-white">
+      <a class="text-white" href="{% url 'prayer_details' prayer.id %}">{{prayer.title}}</a> 
+    </div>
+    
+    {% endfor %}
+    <div class="card-body">
+      {% for intros in intro %}
+      <h4 class="text-center">{{intros.title}}</h4>
+      <!-- image -->
+    <div class="row justify-content-center mx-3 bg-light w-100">
+       
+      <div class="card col-sm-4 col-md-4 col-lg-4 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: 280px;">
+        <!-- <div class="card text-center lead" style="width: 280px; "> -->
+          <div class="card-img-bottom">
+            <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{intros.image.url}}" style="width: 300px; height:auto">
+          </div>
+            
+      
+      <div class="card-footer justify-content-center align p-3 m-round">
+        <!-- <p class="lead">{{descriptions.footer}}</p> -->
+    </div>
+    <!-- end -->
+      <p class="card-text">{{intros.description|safe}}</p>
+      <a href="{% url 'all_prayers' %}" class="btn btn-primary mb-3">Get all Prayers</a>
+      {% endfor %}
+      <a href="{% url 'opening_prayer' %}" class="btn btn-primary mb-3">Stations of the Cross</a>
+      <a href="{% url 'all_novena' %}" class="btn btn-primary">Novenas</a>
+    </div>
+  </div>
+  
+</div>

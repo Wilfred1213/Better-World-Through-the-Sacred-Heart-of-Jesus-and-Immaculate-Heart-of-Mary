@@ -1,0 +1,33 @@
+{% extends 'blog/navigation/aboutMain.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class=" p-5">
+    <div class="col-md-6 mx-auto p-5 bg-dark text-white p-5">
+        <div class="shadow shadow-responsive shadow-info ">
+            <form method ="post" action="{% url 'search' %}" class="">
+                {% csrf_token %}
+                  <input class="form-control me-2"  name= "search" type="search" placeholder="Search" aria-label="Search">
+                  <br>
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+                {% if search %}
+            <div class="shadow p-5">You search for: 
+                {{search}}
+            </div>
+                
+            <div class="bg-warning">
+                  {% for searched in searches %}
+                  {{searched}}
+                  {% endfor %}
+                  {% endif %}
+                
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

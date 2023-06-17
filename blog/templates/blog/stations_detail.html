@@ -1,0 +1,78 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Station Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card bg-primary text-white mb-5">
+        <img class="card-img-top" src="{{ stations_detail.stationimages.station_img.url }}" alt="{{ novenas.title }}" style="height:auto;">
+        <div class="card-body">
+          <h2 class="card-title text-center font-weight-bold text-uppercase text-light mb-4">{{ novenas.title }}</h2>
+          <p class="card-text text-center lead">{{ stations_detail.post_body|safe }}</p>
+          <div class="text-center text-dark font-weight-bold">Date Posted: {{ stations_detail.date|date }}</div>
+        </div>
+      </div>
+      <!-- Days go here -->
+      <div class="card text-white mb-5 mx-auto" style="font-size: 1.5rem; font-family: 'Tahoma', sans-serif; text-align: justify; background-color: rgb(133, 56, 8);">
+        <div class="card-body">
+          <h4 class="card-title font-weight-bold text-info text-center mb-4">{{stations_detail.title}}</h4>
+          
+          <div class="mb-4">
+            <h5 class="card-subtitle text-muted text-center pt-5">{{stations_detail.letuspray.heading}}</h5>
+            <hr class="">
+            <p class="mb-5">{{ stations_detail.letuspray.we_ador |safe }}</p>
+            
+            
+            <hr class="">
+            <p class="pt-5">{{ stations_detail.letuspray.from_pro |safe }}</p>
+            
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ stations_detail.letuspray.words_of_our_lord |safe }}</p>
+            
+            <hr class="">
+            <p class="card-text text-center pt-5">{{ stations_detail.letuspray.prayer |safe }}</p>
+           
+            <hr class="">
+            <h4 class="text-center pt-5 mb-3">Hymn</h4>
+            <p class="card-text text-center pt-5">{{ stations_detail.letuspray.hymn |safe }}</p>
+            
+        </div>
+        
+  </div>
+  
+  
+  
+  <div class="row p-3 mx-auto">
+    {% if previous_station %}
+    <div class="col-md-4 col-sm-4 col-lg-4 mx-auto">
+      <a href="{% url 'station_details' previous_station.title %}" class="btn btn-secondary">Previous</a>
+    </div>
+    {% else %}
+    <div class="col-lg-6 mx-auto">
+      <a href="{% url 'opening_prayer' %}" class="btn btn-secondary">Opening Prayer</a>
+    </div>
+    {% endif %}
+    {% if next_station %}
+    <div class="col-md-4 col-sm-4 col-lg-4  mx-auto">
+      <a href="{% url 'station_details' next_station.title %}" class="btn btn-secondary">Next</a>
+    </div>
+
+    {% else %}
+    <div class="col-lg-6 mx-auto">
+      <a href="{% url 'closing_prayer' %}" class="btn btn-secondary">Closing Prayer</a>
+    </div>
+  {% endif %}
+  </div>
+    
+  </div>
+    
+  </div>
+  <p class="text-light lead text-center">Select a Station</p>
+  {% include 'blog/navigation/main_station.html' %}
+  {% include 'blog/navigation/footer.html' %}
+</div>
+{% endblock %}
