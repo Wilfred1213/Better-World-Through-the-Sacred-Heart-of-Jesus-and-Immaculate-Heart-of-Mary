@@ -1,6 +1,6 @@
 from email.mime import image
 from time import timezone
-from turtle import title
+# from turtle import title
 from django.db import models
 import uuid
 

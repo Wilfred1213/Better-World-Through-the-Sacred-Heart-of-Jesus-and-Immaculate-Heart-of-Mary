@@ -47,9 +47,10 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'authentications',
-    'djcelery_email',
+    # 'djcelery_email',
     'django_social_share',
     #'django_messages'
+    # 'bootstrap4',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -130,12 +131,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static/')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static/')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
+# MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

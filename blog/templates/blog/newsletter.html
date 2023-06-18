@@ -1,35 +1,34 @@
 {% extends 'blog/navigation/main.html' %}
 <!-- {% include 'post_main.html' %} -->
 
-{% load crispy_forms_tags %}
-
-
-
 {% block content %}
 <div class="col-md-12 col-lg-12 my-5 mx-5 justify-content-center">
     <div class="mx-5 px-5">
         <h2 class="text-white bg-dark text-center col-md-6 mx-auto">Send Message</h2>
         <hr>
 
-        <form method="post" class="mx-auto col-md-6" action="{% url 'newsletter' %}" enctype ="multipart/form-data">
+        <form method="post" class="mx-auto col-md-6" action="{% url 'newsletter' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="text-white">
-                {{ form.title | as_crispy_field }}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="text-white">Title:</label>
+                <input type="text" name="{{ form.title.html_name }}" class="form-control" style="background-color: #333; color: white;">
             </div>
-            <div class="text-white">
-                {{ form.letter | as_crispy_field }}
+            <div class="form-group">
+                <label for="{{ form.letter.id_for_label }}" class="text-white">Letter:</label>
+                <textarea name="{{ form.letter.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
             </div>
-            <div class="custom-file-input text-white">
-                {{ form.image | as_crispy_field }}
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}" class="text-white">Image:</label><br>
+                <input type="file" name="{{ form.image.html_name }}" class="form-control-file" style="background-color: #333; color: white;">
             </div>
             
             <br>
-            <input type="submit" value="Post" class="form-group">
+            <input type="submit" value="Post" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">
             <div class="col-lg-4">
                 <div class="mx-auto">
                     {% for message in messages %}
                     <div class="text-danger">
-                        {{message}}
+                        {{ message }}
                     </div>
                     {% endfor %}
                 </div>
@@ -39,7 +38,7 @@
         <hr>
         <br>
 
-        <a href="">Back to dashboard</a>
+        <a href="" class="btn btn-secondary" style="background-color: #6c757d; border-color: #6c757d;">Back to dashboard</a>
         <br>
         <hr>
         <br>

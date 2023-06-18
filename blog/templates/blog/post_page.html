@@ -3,34 +3,35 @@
 
 {% load crispy_forms_tags %}
 
-
-
 {% block content %}
-<div class="col-md-10 mx-auto">
-<h2 class="text-center text-white">Post New Blog</h2>
-<hr>
+<div class="col-md-10 mx-auto bg-dark text-white">
+    <h2 class="text-center text-white">Post New Blog</h2>
+    <hr>
 
-<form method="post" enctype ="multipart/form-data" class="col-md-6 mx-auto">
-    {% csrf_token %}
-    <div class="form-group">
-        {{form.title | as_crispy_field }}
-    </div>
-    <div class="form-group">
-        {{form.post_body | as_crispy_field }}
-    </div>
-    <div class="form-group">
-        {{form.image | as_crispy_field }}
-    </div>
+    <form method="post" enctype="multipart/form-data" class="col-md-6 mx-auto ">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.post_body.id_for_label }}">Post Body:</label>
+            {{ form.post_body }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Image:</label>
+            {{ form.image }}
+        </div>
+        <br>
+        <input type="submit" value="Post">
+    </form>
     <br>
-    <input type="submit" value="Post">
-</form>
-<br>
-<hr>
-<br>
+    <hr>
+    <br>
 
-<a href="">Back to dashboard</a>
-<br>
-<hr>
-<br>
+    <a href="">Back to dashboard</a>
+    <br>
+    <hr>
+    <br>
 </div>
 {% endblock %}
