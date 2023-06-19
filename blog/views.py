@@ -50,7 +50,7 @@ def opening_prayer(request):
     opening = Station_open_closing_prayer.objects.order_by('-date').first()
     context = {
         'opening':opening,
-        'slider':slider,
+        'sliders':slider,
     }
     return render(request, 'blog/opening_prayers.html', context)
 
@@ -62,7 +62,7 @@ def closing_prayer(request):
     closing = Station_open_closing_prayer.objects.order_by('-date').first()
     context = {
         'closing':closing,
-        'slider':slider,
+        'sliders':slider,
         'intro':intro,
         'stations':stations
     }
@@ -239,7 +239,7 @@ def home(request):
     comment_no=comment_count.count()
       
     
-    novena =Novena.objects.all()[0:4]
+    novena =Novena.objects.all()[0:6]
 
     # search
     search_blog = blogsearch(request) 

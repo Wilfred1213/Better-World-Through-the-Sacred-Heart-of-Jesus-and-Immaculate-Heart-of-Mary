@@ -4,22 +4,22 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<div class=" p-5 mb-5">
-    <div class="col-md-6 mx-auto p-5 bg-dark text-white p-5">
+<div class="container col-md-8 col-sm-12 col-lg-8 mb-5">
+    <div class=" mx-auto bg-dark text-white p-5">
         <div class="shadow shadow-responsive shadow-info ">
             {% for about in about %}
-            <div class="lead mx-5 px-5 bg-info">{{about.title |safe}}
+            <div class="lead bg-info">{{about.title |safe}}
             </div>
-            <div class="bg-darl text-whit lead p-5">
+            <div class="bg-dark text-white lead">
                 {{about.description|safe}}
             </div>
-            <div class="bg-darl text-danger lead p-5">
+            <div class="bg-dark text-danger lead">
             Contact: {{about.phone}}
             </div>
             {% endfor %}
         </div>
     </div>
-    
+
 </div>
 {% include 'blog/navigation/footer.html' %}
 {% endblock %}

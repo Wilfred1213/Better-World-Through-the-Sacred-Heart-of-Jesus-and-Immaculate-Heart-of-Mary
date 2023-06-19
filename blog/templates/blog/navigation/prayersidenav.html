@@ -1,5 +1,5 @@
 <!-- Side Navigation -->
-<div class="col-md-3 mt-4 mt-md-0">
+<div class="col-md-3 mt-4 mt-md-0" style="font-size: 1rem;">
   <div class="card mb-3">
     {% for prayer in prayers %}
     <div class="card-header bg-primary text-white">
@@ -24,7 +24,7 @@
         <!-- <p class="lead">{{descriptions.footer}}</p> -->
     </div>
     <!-- end -->
-      <p class="card-text">{{intros.description|safe}}</p>
+      <p class="card-text" style="font-size: 0.5px;">{{intros.description|safe}}</p>
       <a href="{% url 'all_prayers' %}" class="btn btn-primary mb-3">Get all Prayers</a>
       {% endfor %}
       <a href="{% url 'opening_prayer' %}" class="btn btn-primary mb-3">Stations of the Cross</a>

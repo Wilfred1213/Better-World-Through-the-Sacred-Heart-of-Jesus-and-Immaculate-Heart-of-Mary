@@ -130,9 +130,14 @@
         {% if user.is_authenticated %}
         <form method="post" enctype="multipart/form-data" id="comment">
           {% csrf_token %}
-          {{ form|crispy }}
+          <div class="form-group">
+              <label for="{{ form.post_body.id_for_label }}">Live a Comment:</label>
+              <input type="text" name="{{ form.post_body.name }}" id="{{ form.post_body.id_for_label }}" class="form-control">
+          </div>
+                    
           <button type="submit" class="btn btn-primary mt-3">Comment</button>
         </form>
+      
         {% else %}
         <a class="text-info mx-5" href="{% url 'authentications:loggin' %}">Login to comment</a>
         {% endif %}
