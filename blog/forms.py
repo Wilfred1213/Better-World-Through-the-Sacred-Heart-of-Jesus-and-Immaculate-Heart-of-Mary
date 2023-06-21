@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import My_blog,Comment
+from .models import My_blog,Comment,Days
 
 
 
@@ -44,3 +44,14 @@ class NewsLetterForm(forms.Form):
     title = forms.CharField()
     letter = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'custom-file-input'}))
+   
+class novenaForm(forms.Form):
+    title = forms.CharField()
+    post_body = forms.CharField(widget=forms.Textarea) 
+    image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'custom-file-input'}))
+    
+    
+class novenaDaysForm(forms.ModelForm):
+    class Meta:
+        model = Days
+        fields =['day1', 'day2','day3','day4','day5','day6','day7','day8','day9', 'novena']

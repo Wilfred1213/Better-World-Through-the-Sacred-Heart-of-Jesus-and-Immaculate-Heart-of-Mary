@@ -1,0 +1,43 @@
+{% extends 'blog/navigation/main.html' %}
+<!-- {% include 'post_main.html' %} -->
+
+{% block content %}
+<div class="col-md-5 col-sm-12 col-sm-6 mx-auto">
+    <h2 class="text-center text-white">Post Daily Prayer</h2>
+    <hr>
+    <div class="container bg-dark text-white">
+        <form action="{% url 'create_novena' %}" method="post" class="mx-auto form-group" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="text-white">Title:</label>
+                <input type="text" name="{{ form.title.html_name }}" class="form-control" style="background-color: #333; color: white;">
+            </div>
+            <div class="form-group">
+                <label for="{{ form.post_body.id_for_label }}" class="text-white">Intro Novena:</label>
+                <textarea name="{{ form.post_body.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <!-- <div class="form-group">
+                <label for="{{ form.image.id_for_label }}" class="text-white">Image:</label><br>
+                {{ form.image }}
+            </div> -->
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">Image:</label><br>
+                {{ form.image }}
+            </div>
+            
+            <!-- Add more fields here as needed -->
+            
+            <br>
+            <input type="submit" value="Post" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">
+        </form>
+    </div>
+
+    <hr>
+    <br>
+
+    <a href="{% url 'dashbord' %}" class="btn btn-secondary" style="background-color: #6c757d; border-color: #6c757d;">Back to dashboard</a>
+    <br>
+    <hr>
+    <br>
+</div>
+{% endblock %}

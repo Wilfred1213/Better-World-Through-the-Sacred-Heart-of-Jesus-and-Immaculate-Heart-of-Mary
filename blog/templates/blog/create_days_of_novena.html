@@ -1,0 +1,65 @@
+{% extends 'blog/navigation/main.html' %}
+<!-- {% include 'post_main.html' %} -->
+
+{% block content %}
+<div class="col-md-5 col-sm-12 col-sm-6 mx-auto">
+    <h2 class="text-center text-white">Post Daily Prayer</h2>
+    <hr>
+    <div class="container bg-dark text-white">
+        <form action="{% url 'create_days_of_novena' %}" method="post" class="mx-auto form-group" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.day1.id_for_label }}" class="text-white">Day 1:</label>
+                <textarea name="{{ form.day1.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day2.id_for_label }}" class="text-white">Day 2:</label>
+                <textarea name="{{ form.day2.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day3.id_for_label }}" class="text-white">Day 3:</label>
+                <textarea name="{{ form.day3.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day4.id_for_label }}" class="text-white">Day 4:</label>
+                <textarea name="{{ form.day4.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day5.id_for_label }}" class="text-white">Day 5:</label>
+                <textarea name="{{ form.day5.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day6.id_for_label }}" class="text-white">Day 6:</label>
+                <textarea name="{{ form.day6.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day7.id_for_label }}" class="text-white">Day 7:</label>
+                <textarea name="{{ form.day7.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day8.id_for_label }}" class="text-white">Day 8:</label>
+                <textarea name="{{ form.day8.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.day9.id_for_label }}" class="text-white">Day 9:</label>
+                <textarea name="{{ form.day9.html_name }}" class="form-control" rows="4" style="background-color: #333; color: white;"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.novena.id_for_label }}" class="text-white">Title:</label><br>
+                {{ form.novena }}
+            </div>          
+            <br>
+            <input type="submit" value="Post" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">
+        </form>
+    </div>
+
+    <hr>
+    <br>
+
+    <a href="{% url 'dashbord' %}" class="btn btn-secondary" style="background-color: #6c757d; border-color: #6c757d;">Back to dashboard</a>
+    <br>
+    <hr>
+    <br>
+</div>
+{% endblock %}

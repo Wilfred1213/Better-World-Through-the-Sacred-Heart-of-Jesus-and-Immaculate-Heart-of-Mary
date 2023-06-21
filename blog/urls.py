@@ -17,6 +17,8 @@ urlpatterns = [
     path('opening_prayer/', views.opening_prayer, name='opening_prayer'),
     path('closing_prayer/', views.closing_prayer, name='closing_prayer'),
     path('newsletter/', views.newsletter, name='newsletter'),
+    path('create_novena/', views.create_novena, name='create_novena'),
+    path('create_days_of_novena/', views.create_days_of_novena, name='create_days_of_novena'),
         
     path('blog_post/', views.blog_post, name='blog_post'),
     path('liked_post/<int:id>', views.liked_post, name='liked_post'),

@@ -3,7 +3,7 @@
 # from django.contrib.auth import login
 from django.shortcuts import redirect, render
  
-from .forms import NewsLetterForm, PostForm, CommentForm, NovenaCommentForm, dailyPrayersForm
+from .forms import novenaForm, novenaDaysForm, NewsLetterForm, PostForm, CommentForm, NovenaCommentForm, dailyPrayersForm
 from . models import *
 
 from django.urls import reverse
@@ -19,7 +19,43 @@ from django.views.generic import ListView, DetailView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from blog.search import *
 
+def create_novena(request):
+    if request.method == 'POST':
+        form = novenaForm(request.POST, request.FILES)
+        if form.is_valid():
+            title  = form.cleaned_data['title']
+            post_body = form.cleaned_data['post_body']
+            image = form.cleaned_data['image']
+            
+            Novena.objects.create(title = title, post_body=post_body, image=image)
+            messages.info(request, 'novena saved')
+            return redirect('create_days_of_novena')
+        messages.error('Error saving novena')
+    form = novenaForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'blog/create_novena.html', context)
 
+def create_days_of_novena(request):
+    
+    if request.method == 'POST':
+          
+        form = novenaDaysForm(request.POST, request.FILES)
+        if form.is_valid():
+            novena = form.cleaned_data['novena']
+            save_novena = form.save(commit=False)
+            save_novena.novena = novena
+            save_novena.save()
+            messages.info(request, 'Novena Save!')
+            return redirect('create_days_of_novena')
+        
+    form = novenaDaysForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'blog/create_days_of_novena.html', context)
+        
 def newsletter(request):
     slider = Slider.objects.all()
     if request.method == 'POST':

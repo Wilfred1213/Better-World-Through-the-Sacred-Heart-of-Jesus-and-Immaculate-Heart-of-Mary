@@ -14,7 +14,7 @@
         <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ random.image.url }}" style="width: 600px; height: auto" alt="Card Image">
       </div>
       <div class="card-footer justify-content-center align p-3 m-round">
-        <p class="lead">{{ random.post_body}}</p>
+        <p class="lead">{{ random.post_body|safe}}</p>
         <p class="lead text-danger">Posted since: {{ random.post_date|date }}</p>
       </div>
     </div>

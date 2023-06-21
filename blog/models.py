@@ -90,12 +90,9 @@ class Days(models.Model):
     day9 = models.TextField(max_length=5000, null =False, blank = False)
     novena = models.ForeignKey(Novena, on_delete=models.CASCADE, null=False, blank = False, related_name = 'daysofnovena')
     
-    def __str__(self):
-        return self.novena.title
+    # def __str__(self):
+    #     return self.novena.title
    
-
-    def __str__(self):
-        return self.title
 class Dailyprayer(models.Model):
     title =models.CharField(max_length=50, null=False)
     prayer = models.TextField(max_length=10000, null=False)

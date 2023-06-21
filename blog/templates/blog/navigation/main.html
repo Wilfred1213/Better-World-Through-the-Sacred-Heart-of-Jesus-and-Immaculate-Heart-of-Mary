@@ -163,6 +163,7 @@
           <a href="{% url 'blog_post' %}" class="nav-link text-danger">New Blog</a>
           <a href="{% url 'dailyprayer' %}" class="nav-link text-danger">Daily Prayer</a>
           <a href="{% url 'newsletter' %}" class="nav-link text-danger">Send Letter</a>
+          <a href="{% url 'create_novena' %}" class="nav-link text-danger">Create Novena</a>
           {% endif %}
           {% if user.is_authenticated %}
           <a href="{% url 'dashbord' %}" class="nav-link text-info">Dashboard</a>
@@ -187,19 +188,17 @@
           <div class="carousel-inner">
             {% for slider in sliders %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <div class="carousel-image" style="background-image: url('{{ slider.image.url }}');"></div>
+              <div class="carousel-image mb-5" style="background-image: url('{{ slider.image.url }}');"></div>
               <div class="carousel-caption d-none d-md-block">
                 <h5 class="text-white">{{ slider.title }}</h5>
-                <p class="text-light">{{ slider.description }}</p>
-                <div class="text-center">
-                  <a href="#" class="btn btn-primary">Read More</a>
-                </div>
+                <p class="text-light mb-5">{{ slider.description }}</p>
+                
               </div>
               <div class="carousel-caption d-block d-md-none">
                 <h5 class="text-white">{{ slider.title }}</h5>
                 <p class="text-light">{{ slider.description }}</p>
                 <div class="text-center">
-                  <a href="#" class="btn btn-primary">Read More</a>
+                  <!-- <a href="#" class="btn btn-primary">Read More</a> -->
                 </div>
               </div>
             </div>

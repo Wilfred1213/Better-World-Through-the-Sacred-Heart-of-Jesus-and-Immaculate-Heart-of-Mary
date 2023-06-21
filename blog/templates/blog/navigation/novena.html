@@ -10,18 +10,18 @@
           <hr>
         </div>
         <div class="card-text">
-          <p>{{novena.post_body | truncatewords:30}}</p>
+          <p>{{novena.post_body |safe| truncatewords:30}}</p>
         </div>
       
         <div class="text-danger">{{ novena.post_date }}</div>
         <hr>
-        <a href="{% url 'novena_details' novena.id %}"><div class="btn btn-secondary addtocart" type="submit">Start Novena</div></a>
+        <a href="{% url 'novena_details' novena.id %}"><div class="btn btn-secondary mb-3" type="submit">Start Novena</div></a>
          
     </div>
     {% endfor %}
 
-    <div class="card-footer text-center align p-3 m-round">
+    <!-- <div class="card-footer text-center align p-3 m-round">
       <a href="{% url 'all_novena' %}" class="btn btn-secondary lead">View all Novenas</a>
-    </div>  
+    </div>   -->
 </div>
     
