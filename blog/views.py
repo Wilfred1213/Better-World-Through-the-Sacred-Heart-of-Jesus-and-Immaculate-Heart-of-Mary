@@ -21,6 +21,7 @@ from blog.search import *
 
 @login_required(login_url ='authentications:loggin')
 def create_novena(request):
+    slider = Slider.objects.all()
     if request.method == 'POST':
         form = novenaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -34,7 +35,8 @@ def create_novena(request):
         messages.error('Error saving novena')
     form = novenaForm()
     context = {
-        'form':form
+        'sliders':slider,
+        'form':form,
     }
     return render(request, 'blog/create_novena.html', context)
 
