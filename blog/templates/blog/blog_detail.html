@@ -1,9 +1,9 @@
 {% extends 'blog/navigation/main.html' %}
 {% load static %}
-{% load social_share %}
+
 {% load crispy_forms_tags %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Detail Page{% endblock %}
 
 {% block content %}
 
@@ -17,20 +17,20 @@
 {% for search in searches %}
 <div class="shadow p-5 mb-5 bg-light rounded">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-10 col-md-10">
       
       <div class="text-center mt-3 w-70 mx-auto">
-        <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ search.image.url }}" alt="responsive" style="width: 400px; height: 400px;">
+        <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ search.image.url }}" alt="responsive" style="width: 400px; height: auto;">
         <small class="bg-light ">{{ search.title|safe}} | {{ search.post_date }}</small>
         <hr>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8 col-sm-12 mx-auto">
       <h3 class="display-4 lead">{{ search.title|safe }}</h3>
       <p class="lead text-justify">{{ search.post_body |safe}}</p>
       
       <!-- message and like -->
-      {% if user.is_authenticated %}
+      
       <div class="mt-4">
         <div class="d-flex align-items-center">
           <a href="#comment" class="btn btn-primary me-3">
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      {% endif %}
+      
       <!-- end of message and like -->
     </div>
   </div>
@@ -71,20 +71,20 @@
 <!-- end search -->
   <div class="shadow p-5 mb-5 bg-light rounded">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-10 col-sm-10">
         
         <div class="text-center mt-3 w-70 mx-auto">
-          <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ blog.image.url }}" alt="responsive" style="width: 400px; height: 400px;">
+          <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ blog.image.url }}" alt="responsive" style="width: 400px; height: auto;">
           <small class="bg-light ">{{ blog.title|safe}} | {{ blog.post_date }}</small>
           <hr>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-9 col-sm-12">
         <h3 class="display-4 lead">{{ blog.title|safe }}</h3>
         <p class="lead text-justify">{{ blog.post_body |safe}}</p>
         
         <!-- message and like -->
-        {% if user.is_authenticated %}
+        
         <div class="mt-4">
           <div class="d-flex align-items-center">
             <a href="#comment" class="btn btn-primary me-3">
@@ -114,10 +114,12 @@
             </div>
           </div>
         </div>
-        {% endif %}
+        
         <!-- end of message and like -->
       </div>
+      {% include 'blog/navigation/prayersidenav.html' %}
     </div>
+    
   </div>
   
   <!-- beginning of comment section -->
@@ -127,7 +129,7 @@
       <div class="col-md-8">
         <h3 class="text-white">Comments</h3>
         <hr class="text-white">
-        {% if user.is_authenticated %}
+        
         <form method="post" enctype="multipart/form-data" id="comment">
           {% csrf_token %}
           <div class="form-group">
@@ -138,9 +140,6 @@
           <button type="submit" class="btn btn-primary mt-3">Comment</button>
         </form>
       
-        {% else %}
-        <a class="text-info mx-5" href="{% url 'authentications:loggin' %}">Login to comment</a>
-        {% endif %}
         <hr class="text-white">
         
         {% for comment in comments %}
