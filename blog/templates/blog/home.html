@@ -1,7 +1,5 @@
 {% extends 'blog/navigation/main.html' %}
-
 {% load static %}
-{% load social_share %}
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
@@ -31,7 +29,7 @@
       <p class="lead text-justify">{{ search.post_body |safe}}</p>
       
       <!-- message and like -->
-      {% if user.is_authenticated %}
+      
       <div class="mt-4">
         <div class="d-flex align-items-center">
           <a href="#comment" class="btn btn-primary me-3">
@@ -61,7 +59,7 @@
           </div>
         </div>
       </div>
-      {% endif %}
+      
       <!-- end of message and like -->
     </div>
   </div>
@@ -91,7 +89,7 @@
               </div>
             </div>
             <!-- message and like -->
-            {% if user.is_authenticated %}
+            
             <div class="mt-4">
               <div class="d-flex align-items-center">
                 <a href="{% url 'blog_details' blog.id %}" class="btn btn-primary me-3">
@@ -120,7 +118,7 @@
                 </div>
               </div>
             </div>
-            {% endif %}
+           
             <!-- end of message and like -->
           </div>
           {% endfor %}

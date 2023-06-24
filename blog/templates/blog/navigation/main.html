@@ -1,6 +1,4 @@
 {% load static %}
-{% load social_share %}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,10 +145,13 @@
             <a class="nav-link bg-success text-white" href="{% url 'dashbord' %}">Hello, {{ user }}</a>
           </li>
           <li class="nav-item">
+            <a href="{% url 'dashbord' %}" class="nav-link text-info">Dashboard</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'authentications:logout' %}">Logout</a>
           </li>
           {% else %}
-          <li class="nav-item">
+          <li class="nav-item mb-3">
             <a class="nav-link bg-success text-white" href="{% url 'authentications:loggin' %}">Login</a>
           </li>
           <li class="nav-item">
@@ -165,9 +166,7 @@
           <a href="{% url 'newsletter' %}" class="nav-link text-danger">Send Letter</a>
           <a href="{% url 'create_novena' %}" class="nav-link text-danger">Create Novena</a>
           {% endif %}
-          {% if user.is_authenticated %}
-          <a href="{% url 'dashbord' %}" class="nav-link text-info">Dashboard</a>
-          {% endif %}
+          
         </div>
       </div>
     </div>
@@ -223,11 +222,7 @@
       {% block content %}
 
       {% endblock %}
-  
-      
-      <div class="card-footer justify-content-center align p-3 m-round">
-        <p class="lead">{{descriptions.footer}}</p>
-      </div>
+
 
 {% block tag %}
 

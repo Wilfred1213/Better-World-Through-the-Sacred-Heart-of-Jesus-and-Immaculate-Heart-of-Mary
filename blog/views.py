@@ -19,6 +19,7 @@ from django.views.generic import ListView, DetailView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from blog.search import *
 
+@login_required(login_url ='authentications:loggin')
 def create_novena(request):
     if request.method == 'POST':
         form = novenaForm(request.POST, request.FILES)
@@ -37,6 +38,7 @@ def create_novena(request):
     }
     return render(request, 'blog/create_novena.html', context)
 
+@login_required(login_url ='authentications:loggin')
 def create_days_of_novena(request):
     
     if request.method == 'POST':
@@ -55,7 +57,9 @@ def create_days_of_novena(request):
         'form':form
     }
     return render(request, 'blog/create_days_of_novena.html', context)
-        
+
+# sending news letter
+@login_required(login_url ='authentications:loggin')        
 def newsletter(request):
     slider = Slider.objects.all()
     if request.method == 'POST':
@@ -79,7 +83,7 @@ def newsletter(request):
     }
     return render(request, 'blog/newsletter.html', context)
 
-
+# stations of the cross
 @login_required(login_url ='authentications:loggin')
 def opening_prayer(request):
     slider = Slider.objects.all()
@@ -153,15 +157,7 @@ def station_details(request, station_id):
         
         
     }
-    # ajax
-    if next_station:
-        next_station_url = '/station_details/' + str(next_station.number_of_stations) + '/'
-    else:
-        next_station_url = None
-
-    data = {'nextStationUrl': next_station_url}
     
-    # return JsonResponse(data)
     return render(request, 'blog/stations_detail.html', context)
 
 @login_required(login_url ='authentications:loggin')
@@ -303,7 +299,7 @@ def galary(request):
     
     galary = My_blog.objects.all()
     # pagination
-    paginator = Paginator(galary, 100)
+    paginator = Paginator(galary, 50)
     page_number = request.GET.get('page')
     try:
 
@@ -485,12 +481,6 @@ def aboutview(request):
 class deleteComentsView(DeleteView):
     model = Comment
     success_url =reverse_lazy('blog_details', args =[str(id)])
-
-
-# class aboutView(ListView):
-
-#     model = About_us
-#     template_name= 'blog/about.html'
 
 class novenaView(DetailView):
     model = Novena

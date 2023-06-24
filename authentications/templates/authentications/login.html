@@ -1,7 +1,7 @@
 {% extends 'blog/navigation/main.html' %}
 {% load static %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Login Page{% endblock %}
 
 {% block tag %}
 <div class=" p-5">
@@ -11,9 +11,10 @@
 
             <ul class="messages">
                 {% for message in messages %}
-                <li {% if massage.tags %} class="{{ message.tags }}"
-                    {% endif %}> 
-                    {{ message }}
+                <li {% if massage.tags %} class="{{ message.tags }}"{% endif %}> 
+                    <div class="text-danger">
+                        {{ message }}
+                    </div> 
                 </li>
                 {% endfor %}
             </ul>
@@ -22,7 +23,7 @@
                 {% csrf_token %}
                   <input class="form-control me-2 p-2"  name= "username" type="text" placeholder="Username" aria-label="Search" required>
                   
-                  <input class="form-control me-2 pt-2 my-3"  name= "password" type="password" placeholder="Re-enter Passweord" aria-label="Search" required>
+                  <input class="form-control me-2 pt-2 my-3"  name= "password" type="password" placeholder="Enter Passweord" aria-label="Search" required>
                   <br>
                   <button class="btn btn-outline-success" type="submit">Login</button>
                   <a class="p-2 text-info" href="{% url 'authentications:signup' %}">Dont have account? Signup!</a>

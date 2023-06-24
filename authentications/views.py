@@ -14,37 +14,6 @@ from django.core.mail import EmailMessage
 
 
 
-# Create your views here.
-#@user_is_superuser
-# def newsletter(request):
-#     if request.method =='POST':
-
-#         form =NewsletterForm(request.POST)
-#         if form.is_valid():
-#             subject =form.cleaned_data.get('subject')
-#             receivers =form.cleaned_data.get('receiver').split(',')
-#             email_message =form.cleaned_data.get('message')
-
-#             mail =EmailMessage(subject, email_message, f'Sacred Heart of Jesus and Immaculate Heart of Mary<{request.user.email}>', bcc =receivers)
-#             mail.content_subtype ='html'
-#             if mail.send():
-#                 messages.success(request, 'Email successfully send')
-#             else:
-#                 messages.error(request, 'There was error sending this mail')
-#         else:
-#             for error in list(form.errors.values()):
-#                 messages.error(request, error)
-
-#         return redirect('authentications:newsletter')
-#     else:
-#         form =NewsletterForm(request.POST)
-#         form.fields['receiver'].initial=','.join([active.email for active in SubscribedUser.objects.all()])
-#         context = {
-#             'form':form
-#         }
-#         return render(request, 'blog/newsletter.html', context)
-
-
 
 def subscribe(request):
     if request.method =='POST':

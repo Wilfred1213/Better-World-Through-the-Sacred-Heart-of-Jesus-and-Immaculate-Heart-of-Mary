@@ -11,10 +11,10 @@
   <!-- beggining of prayers -->
   <div class="row justify-content-center mx-3 bg-light">
     {% for galary in page_obj %}
-    <div class="card col-sm-4 mx-3 lead my-5 justify-content-center" style="width: 280px;">
+    <div class="card col-sm-6 col-md-4 col-lg-4 mx-3 lead justify-content-center" style="width: 400px; height: auto;">
       <!-- <div class="card text-center lead" style="width: 280px; "> -->
         <div class="card-img-bottom">
-          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ galary.image.url }}" style="width: 300px; height:300px">
+          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ galary.image.url }}" style="width: 400px; height:auto">
         </div>
         
     </div>
