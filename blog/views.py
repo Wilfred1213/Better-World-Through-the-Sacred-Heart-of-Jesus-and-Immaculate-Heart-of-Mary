@@ -61,7 +61,7 @@ def create_days_of_novena(request):
     return render(request, 'blog/create_days_of_novena.html', context)
 
 # sending news letter
-@login_required(login_url ='authentications:loggin')        
+# @login_required(login_url ='authentications:loggin')        
 def newsletter(request):
     slider = Slider.objects.all()
     if request.method == 'POST':
@@ -86,7 +86,7 @@ def newsletter(request):
     return render(request, 'blog/newsletter.html', context)
 
 # stations of the cross
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def opening_prayer(request):
     slider = Slider.objects.all()
     opening = Station_open_closing_prayer.objects.order_by('-date').first()
@@ -96,7 +96,7 @@ def opening_prayer(request):
     }
     return render(request, 'blog/opening_prayers.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def closing_prayer(request):
     intro =PrayerIntro.objects.all().order_by('-post_date')
     slider = Slider.objects.all()
@@ -110,7 +110,7 @@ def closing_prayer(request):
     }
     return render(request, 'blog/closing_prayer.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def all_stations_cross(request):
     slider = Slider.objects.all()
     stationintro = Station_open_closing_prayer.objects.order_by('-date').first()
@@ -130,7 +130,7 @@ def all_stations_cross(request):
     }
     return render(request, 'blog/stations_of_the_cross.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def station_details(request, station_id):
     my_blog =My_blog.objects.all()
     slider = Slider.objects.all()
@@ -162,7 +162,7 @@ def station_details(request, station_id):
     
     return render(request, 'blog/stations_detail.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def all_prayers(request):
     dailyprayer = Dailyprayer.objects.order_by('-date_posted').first()
     all_prayers = Prayers.objects.order_by('?').first()
@@ -192,7 +192,7 @@ def unsubscrib(request):
     return redirect('home')
 
     
-@login_required(login_url ='authentications:loggin')        
+# @login_required(login_url ='authentications:loggin')        
 def dailyprayer(request):
     slider = Slider.objects.all()
     if request.method == 'POST':
@@ -214,13 +214,13 @@ def dailyprayer(request):
     return render(request, 'blog/dailyprayer.html', context)
 
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def deleteBlog(request, id):
     myBlog =My_blog.objects.get(id=id)
     myBlog.delete()
     return redirect('home')
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def deleteComent(request, blog_id):
     
     comment =Comment.objects.get(id=blog_id)
@@ -231,7 +231,7 @@ def deleteComent(request, blog_id):
     return redirect(reverse('blog_details', kwargs={'id': comment.blog.id}))
 
 # delete nove_na
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def deleteNovenaComent(request, novena_id):
     
     comment =NovenaComment.objects.get(id=novena_id)
@@ -241,7 +241,7 @@ def deleteNovenaComent(request, novena_id):
     # return redirect(request.META.get('HTTP_REFERER'))
     return redirect(reverse('novena_details', kwargs={'id': comment.novenas.id}))
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def dashbord(request):
     slider = Slider.objects.all()
     context = {
@@ -251,7 +251,7 @@ def dashbord(request):
     }
     return render(request, 'blog/dashbord.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def home(request):
     dailyprayer = Dailyprayer.objects.order_by('-date_posted').first()
     my_blog =My_blog.objects.all().order_by('-post_date')
@@ -293,7 +293,7 @@ def home(request):
 
 
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def galary(request):
     slider = Slider.objects.all()
     prayers = Prayers.objects.all()
@@ -320,7 +320,7 @@ def galary(request):
     }
     return render(request, 'blog/galary.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def message(request, id):
     blog = My_blog.objects.get(id=id)
     comment =Comment.objects.filter(blog =blog)
@@ -329,7 +329,7 @@ def message(request, id):
     return render(request, 'blog/home.html', {'comment_count':comment_count})
 
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def prayer_details(request, id):
     detail = Prayers.objects.get(id =id)
     novena =Novena.objects.all()[0:4]
@@ -348,7 +348,7 @@ def prayer_details(request, id):
     }
     return render(request, 'blog/prayer_detail.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def blog_details(request, id):
     users = request.user
      
@@ -387,7 +387,7 @@ def blog_details(request, id):
     }
     return render(request, 'blog/blog_detail.html', context)
 
-@login_required(login_url ='authentications:loggin')
+# @login_required(login_url ='authentications:loggin')
 def all_novena(request):
     slider = Slider.objects.all()
     prayers = Prayers.objects.all()
@@ -407,7 +407,7 @@ def all_novena(request):
     }
     return render(request, 'blog/all_novena.html', context)
 
-@login_required(login_url ='authentications:loggin')    
+# @login_required(login_url ='authentications:loggin')    
 def novena_details(request, id):
     users = request.user
     my_blog =My_blog.objects.all()
@@ -446,7 +446,7 @@ def novena_details(request, id):
     return render(request, 'blog/novena_detail.html', context)
 
 
-@login_required(login_url ='authentications:loggin') 
+# @login_required(login_url ='authentications:loggin') 
 def blog_post(request):
     slider = Slider.objects.all()
     if request.method =='POST':
