@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
-from settings_local import *
+from .settings_local import *
 
 MESSAGE_TAGS ={
     messages.INFO: 'alert-secondary',
