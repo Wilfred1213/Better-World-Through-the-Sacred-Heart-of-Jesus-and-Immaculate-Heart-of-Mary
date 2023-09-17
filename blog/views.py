@@ -320,7 +320,7 @@ def galary(request):
     }
     return render(request, 'blog/galary.html', context)
 
-# @login_required(login_url ='authentications:loggin')
+@login_required(login_url ='authentications:loggin')
 def message(request, id):
     blog = My_blog.objects.get(id=id)
     comment =Comment.objects.filter(blog =blog)
@@ -362,7 +362,8 @@ def blog_details(request, id):
     # search
     search_blog =blogsearch(request)       
     # end
-
+    if not users.is_authenticated:
+        return redirect('authentications:loggin')
     if request.method =='POST':
         form = CommentForm(request.POST)
         if form.is_valid():
