@@ -2,7 +2,13 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
-from .settings_local import *
+# from .settings_local import *
+
+
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 MESSAGE_TAGS ={
     messages.INFO: 'alert-secondary',
@@ -25,6 +31,7 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'authentications',
+    'homeApp',
     
 ]
 
@@ -68,6 +75,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Timeout in seconds
+        }
     }
 }
 
@@ -116,5 +126,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 

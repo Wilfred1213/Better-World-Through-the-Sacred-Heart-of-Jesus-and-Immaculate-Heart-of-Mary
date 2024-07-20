@@ -19,4 +19,5 @@ admin.site.register(Stationsprayers)
 admin.site.register(Station_open_closing_prayer)
 admin.site.register(OpeningPrayerImages)
 admin.site.register(NewsLetter)
+admin.site.register(Gallery)
 

@@ -1,0 +1,56 @@
+{% if searches %}
+{% for search in searches %}
+<div class="shadow p-5 mb-5 bg-light rounded " id="#search">
+  <div class="row">
+    <div class="col-md-6">
+      
+      <div class="text-center mt-3 w-70 mx-auto">
+        <img class="img-thumbnail mx-auto d-block fw-bold" src="{{ search.image.url }}" alt="responsive" style="width: 400px; height: 400px;">
+        <small class="bg-light ">{{ search.title|safe}} | {{ search.post_date }}</small>
+        <hr>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <h3 class="display-4 lead">{{ search.title|safe }}</h3>
+      <p class="lead text-justify">{{ search.post_body |safe}}</p>
+      
+      <!-- message and like -->
+      
+      <div class="mt-4">
+        <div class="d-flex align-items-center">
+          <a href="{% url 'blog_details' search.id %}#comment" class="btn btn-primary me-3">
+            <span class="text-white">Messages</span>
+            <span class="badge bg-dark">{{ comment_no }}</span>
+          </a>
+          
+          <form action="{% url 'liked_post' search.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="like" value="{{ search.id }}">
+            {% if user not in blog.liked.all %}
+              <button class="btn btn-danger" type="submit">Like
+                <span class="badge bg-dark">{{ search.liked.all.count }}</span>
+              </button>
+            {% else %}
+              <button class="btn btn-info" type="submit">Unlike
+                <span class="badge bg-dark">{{ search.liked.all.count }}</span>
+              </button>
+            {% endif %}
+          </form>
+          <!-- copy link -->
+          <div class="mx-3">
+            <!-- django-social-share -->
+            <button id="copyButton" class="btn btn-secondary">Copy Link</button>
+            <span id="url" style="display: none;">{{ request.build_absolute_uri }}</span>
+            <!-- end -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- end of message and like -->
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endif %}
+<!-- end search -->

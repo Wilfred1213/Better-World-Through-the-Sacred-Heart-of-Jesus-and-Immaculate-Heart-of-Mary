@@ -5,7 +5,7 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('home/', views.home, name='home'),
     path('dailyprayer/', views.dailyprayer, name='dailyprayer'),
     path('prayer_details<int:id>/', views.prayer_details, name='prayer_details'),
     path('blog_details<int:id>/', views.blog_details, name='blog_details'),
@@ -28,12 +28,14 @@ urlpatterns = [
     path('galary/', views.galary, name='galary'),
     path('aboutView/', views.aboutview, name='aboutView'),
     path('novenaView/', views.novenaView.as_view(), name='novenaView'),
-    
+    path('dailypassword/', views.dailypassword, name='dailypassword'),  
     path('deleteBlog/<int:id>/', views.deleteBlog, name='deleteBlog'),    
     path('dashbord/', views.dashbord, name='dashbord'),
     path('deleteComent/<int:blog_id>/', views.deleteComent, name="deleteComent"),
     path('deleteNovenaComent/<int:novena_id>/', views.deleteNovenaComent, name="deleteNovenaComent"),
-    # path('unsubscribe/<str:email_id/', views.unsubscribe, name="unsubscribe"),
+    
+    path('unsubscribe/', views.unsubscribe, name="unsubscribe"),
+    path('unsub_confirmation/', views.unsub_confirmation, name="unsub_confirmation"),
 
     # change password
     path('change-password/', PasswordChangeView.as_view(

@@ -3,8 +3,9 @@
 # from django.contrib.auth import login
 from django.shortcuts import redirect, render
  
-from .forms import novenaForm, novenaDaysForm, NewsLetterForm, PostForm, CommentForm, NovenaCommentForm, dailyPrayersForm
+from .forms import novenaForm, PasswordForm, novenaDaysForm, NewsLetterForm, PostForm, CommentForm, NovenaCommentForm, dailyPrayersForm
 from . models import *
+from homeApp.models import FocolarePassword
 
 from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
@@ -18,6 +19,35 @@ from django.contrib.auth import authenticate
 from django.views.generic import ListView, DetailView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from blog.search import *
+
+
+def dailypassword(request):
+    slider = Slider.objects.all()
+    if request.method == 'POST':
+        form = PasswordForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            title = form.cleaned_data['title']
+            body = form.cleaned_data['body']
+            author = form.cleaned_data['author']
+            image = form.cleaned_data['image']
+            year = form.cleaned_data['year']
+            FocolarePassword.objects.create(title=title, user = request.user, body=body, author=author, image= image, year=year)
+            
+            messages.info(request, 'Password shared!!')
+            return redirect('dailypassword')
+    
+    form = PasswordForm()
+
+    context = {
+        'form': form,
+        'sliders':slider,
+    }
+
+    return render(request, 'blog/post_password.html', context)
+
+
+
 
 @login_required(login_url ='authentications:loggin')
 def create_novena(request):
@@ -182,16 +212,24 @@ def all_prayers(request):
     }
     return render(request, 'blog/all_prayers.html', context)
 
-def unsubscrib(request):
-    user = request.user
-    subscribed = SubscribedUser.objects.filter(unsubscribe__in = request.user)
-    if subscribed:
-        subscribed.delete()
-        return redirect('home')
+def unsub_confirmation(request):
+    return render(request, 'blog/unsub_confirmation.html')
 
-    return redirect('home')
-
-    
+def unsubscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        subscription = SubscribedUser.objects.filter(email=email).first()
+        if subscription:
+            subscription.delete()
+            return render(request, 'blog/unsubscribe_success.html')
+        else:
+            return render(request, 'blog/unsubscribe_error.html')
+    else:
+        email = request.GET.get('email')
+        if email:
+            return render(request, 'blog/unsubscribe.html', {'email': email})
+        else:
+            return render(request, 'blog/unsubscribe_error.html')
 # @login_required(login_url ='authentications:loggin')        
 def dailyprayer(request):
     slider = Slider.objects.all()
@@ -218,7 +256,7 @@ def dailyprayer(request):
 def deleteBlog(request, id):
     myBlog =My_blog.objects.get(id=id)
     myBlog.delete()
-    return redirect('home')
+    return redirect('homeApp:index')
 
 # @login_required(login_url ='authentications:loggin')
 def deleteComent(request, blog_id):
@@ -299,9 +337,9 @@ def galary(request):
     prayers = Prayers.objects.all()
     
     
-    galary = My_blog.objects.all()
+    galary = Gallery.objects.all()
     # pagination
-    paginator = Paginator(galary, 50)
+    paginator = Paginator(galary, 20)
     page_number = request.GET.get('page')
     try:
 
@@ -454,7 +492,7 @@ def blog_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('homeApp:index')
                
     else:
         form =PostForm()

@@ -1,10 +1,10 @@
 <div class="row mx-auto bg-light">
     {% for station in stations %}
-    <div class="card col-sm-12 col-md-12 col-lg-6 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: auto;">
+    <div class="card col-sm-12 col-md-9 pt-5 col-lg-6 col-xl-4 mx-auto lead mb-3">
       <!-- <div class="card text-center lead" style="width: 280px; "> -->
         <div class="card-img-bottom">
     
-          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ station.stationimages.station_img.url }}" style="width: 400px; height:auto">
+          <img class="card-img-bottom img-fluid img-thumbnail" src="{{ station.stationimages.station_img.url }}" style="width: 400px; height:auto">
         </div>
         <div class="card-title">
           <h5 class="text-center">{{ station.letuspray.title|safe }}</h5>
@@ -21,8 +21,6 @@
     </div>
     {% endfor %}
 
-    <div class="card-footer text-center align p-3 m-round">
-      <a href="{% url 'all_stations_cross' %}" class="btn btn-secondary lead">View all Stations</a>
-    </div>  
+     
 </div>
     

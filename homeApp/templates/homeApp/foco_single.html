@@ -1,0 +1,98 @@
+
+{% extends 'homeApp/base/homeApp/base.html' %}
+{% load static %}
+{% block title %} Password Detail {% endblock %}
+
+{% block content %}
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('images/hero_5.jpg');">
+    <div class="container">
+      <div class="row same-height justify-content-center">
+        <div class="col-md-6">
+          <div class="post-entry text-center">
+            <h1 class="mb-4">{{passwords.title}}</h1>
+            <div class="post-meta align-items-center text-center">
+              <figure class="author-figure mb-0 me-3 d-inline-block"><img src="{{passwords.image.url}}" alt="Image" class="img-fluid"></figure>
+              <span class="d-inline-block mt-1">{{passwords.author}}</span>
+              <span>&nbsp;-&nbsp; {{passwords.posted_date|date}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="row blog-entries element-animate">
+
+        <div class="col-md-12 col-lg-8 main-content mx-auto">
+
+          <div class="post-content-body">
+            <p>{{ passwords.body }}</p>
+            
+            <div class="row my-4">
+              <div class="col-md-12 mb-4">
+                <img src="{{passwords.image.url}}" alt="Image placeholder" class="img-fluid rounded">
+              </div>
+              
+            </div>
+            
+          </div>
+
+
+          
+        </div>
+
+        <!-- END main-content -->
+
+        
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Start posts-entry -->
+  <section class="section posts-entry posts-entry-sm bg-light">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-12 text-uppercase text-black">Recent Blog Posts</div>
+      </div>
+      
+      <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-6 col-lg-3">
+          <div class="blog-entry">
+            
+            <a href="{% url 'blog_details' blog.id %}" class="img-link">
+              <img src="{{blog.image.url}}" alt="Image" class="img-fluid">
+            </a>
+            <span class="date">{{blog.post_date|date}}</span>
+            <h2><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a></h2>
+            <!-- <p>{{blog.post_body|truncatewords:20|safe}}</p> -->
+            <p><a href="{% url 'blog_details' blog.id %}" class="read-more">Continue Reading</a></p>
+            
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+      
+    </div>
+  </section>
+  <!-- End posts-entry -->
+
+  {% include 'blog/navigation/footer.html' %}
+    <!-- Preloader -->
+    {% include 'homeApp/base/homeApp/preload.html' %}
+
+{% endblock %}

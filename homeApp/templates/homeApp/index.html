@@ -1,0 +1,253 @@
+
+{% extends 'homeApp/base/homeApp/base.html' %}
+{% load static %}
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+	<!-- Start retroy layout blog posts -->
+	<section class="section bg-light">
+		<div class="container">
+			<div class="row align-items-stretch retro-layout">
+				{% include 'blog/navigation/search.html' %}
+				{% include 'blog/navigation/search_data_display.html' %}
+				<div class="col-md-4">
+					{% for blog in blogs %}
+					<a href="{% url 'blog_details' blog.id %}" class="h-entry mb-30 v-height gradient">
+
+						<div class="featured-img" style="background-image: url({{blog.image.url}});"></div>
+
+						<div class="text">
+							<span class="date">{{blog.posted_date}}</span>
+							<h2>{{blog.title}}</h2>
+						</div>
+					</a>
+					{% endfor %}
+					
+				</div>
+				<div class="col-md-4">
+					
+					<a href="{% url 'blog_details' first.id %}" class="h-entry img-5 h-100 gradient">
+
+						<div class="featured-img" style="background-image: url({{first.image.url}});"></div>
+
+						<div class="text">
+							<span class="date">{{first.posted_date|timesince}}</span>
+							<h2>{{first.title}}</h2>
+						</div>
+					</a>
+					
+				</div>
+
+				<div class="col-md-4">
+					{% for blog in last %}
+					<a href="{% url 'blog_details' blog.id %}" class="h-entry mb-30 v-height gradient">
+
+						<div class="featured-img" style="background-image: url({{blog.image.url}});"></div>
+
+						<div class="text">
+							<span class="date">{{blog.posted_date}}</span>
+							<h2>{{blog.title}}</h2>
+						</div>
+					</a>
+					{% endfor %}
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End retroy layout blog posts -->
+
+	<!-- Start posts-entry -->
+	<section class="section posts-entry">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Daily Prayers</h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'all_prayers' %}" class="read-more">View All</a></div>
+			</div>
+			<div class="row g-3">
+				<div class="col-md-5 mx-auto">
+					<ul class="list-unstyled blog-entry-sm">
+						
+						<li>
+							<span class="date">{{dailys.date_posted}}</span>
+							<h3>{{dailys.title}}</h3>
+							<p>{{dailys.prayer}}</p>
+				
+						</li>
+						
+						
+					</ul>
+				</div>
+				<div class="col-md-9">
+					<div class="row g-3">
+					
+						{% for prayer in prayers%}
+						<div class="col-md-6">
+							
+							<div class="blog-entry">
+								
+								<a href="{% url 'prayer_details' prayer.id %}" class="img-link">
+									<img src="{{prayer.image.url}}" alt="Image" class="img-fluid">
+								</a>
+								<span class="date">{{prayer.posted_date}}</span>
+								<h2><a href="{% url 'prayer_details' prayer.id %}">{{prayer.title}}</a></h2>
+								<p>{{prayer.prayer}}</p>
+								<p><a href="{% url 'prayer_details' prayer.id %}" class="btn btn-sm btn-outline-primary">Read More</a></p>
+								
+							</div>
+							
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+				
+
+				<div class="col-md-3">
+					<ul class="list-unstyled blog-entry-sm">
+						{% for prayer in prayers %}
+						<li>
+							<span class="date">{{prayer.date_posted}}</span>
+							<h3><a href="{% url 'prayer_details' prayer.id %}">{{ prayer.title }}</a></h3>
+							<p>{{ prayer.description| truncatewords:20 }}</p>
+							<p><a href="{% url 'prayer_details' prayer.id %}" class="read-more">Continue Reading</a></p>
+						</li>
+						{% endfor %}
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End posts-entry -->
+
+	<!-- Start posts-entry -->
+	
+	<section class="section posts-entry posts-entry-sm bg-light">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Daily Focolare Password </h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'homeApp:focolare' %}" class="read-more">View All</a></div>
+			</div>
+			<div class="row">
+				{% for foco in focolares %}
+				<div class="col-md-6 col-lg-3">
+					<div class="blog-entry">
+						<a href="{% url 'homeApp:focolare_detail' foco.id %}" class="img-link">
+							<img src="{{foco.ImageUrl}}" alt="Image" class="img-fluid">
+						</a>
+						<span class="date">{{ foco.posted_date |date }}</span>
+						<h2><a href="{% url 'homeApp:focolare_detail' foco.id %}">{{foco.title|safe}}</a></h2>
+						<p>{{foco.body| truncatewords:30|safe}}</p>
+						<p>{{foco.author}}</p>
+						<p>{{foco.year}}</p>
+						<p><a href="{% url 'homeApp:focolare_detail' foco.id %}" class="read-more">Continue Reading</a></p>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</section>
+	<!-- End posts-entry -->
+
+	
+	<section class="section">
+		<div class="container">
+
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Novena</h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'all_novena' %}" class="read-more">View All</a></div>
+			</div>
+
+			<div class="row">
+				{% for novena in novenas %}
+				<div class="col-lg-4 mb-4">
+					<div class="post-entry-alt">
+						<a href="{% url 'novena_details' novena.id %}" class="img-link"><img src="{{novena.image.url}}" alt="Image" class="img-fluid"></a>
+						<div class="excerpt">
+							
+
+							<h2><a href="{% url 'novena_details' novena.id %}">{{novena.title}}</a></h2>
+							<div class="post-meta align-items-center text-left clearfix">
+								<!-- <figure class="author-figure mb-0 me-3 float-start"><img src="{{novena.image.url}}" alt="Image" class="img-fluid"></figure> -->
+								<!-- <span class="d-inline-block mt-1">By <a href="#">David Anderson</a></span> -->
+								<span> {{novena.post_date|timesince}}</span>
+							</div>
+
+							<!-- <p>{{novena.post_body|safe|truncatewords:50}}</p> -->
+							<p><a href="{% url 'novena_details' novena.id %}" class="read-more">Continue Reading</a></p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+			
+		</div>
+	</section>
+
+	<div class="section bg-light">
+		<div class="container">
+
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Stations of Cross</h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'all_stations_cross' %}" class="read-more">View All</a></div>
+			</div>
+
+			<div class="row align-items-stretch retro-layout-alt">
+
+				<div class="col-md-5 order-md-2">
+					<a href="{% url 'opening_prayer' %}" class="hentry img-1 h-100 gradient">
+						<div class="featured-img" style="background-image: url({{stations2.station_img.url}});"></div>
+						<div class="text">
+							<span>{{stations2.station_image.url}}</span>
+							<!-- <h2> {{stations2.title}}</h2> -->
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-7">
+					
+					<a href="{% url 'opening_prayer' %}" class="hentry img-2 v-height mb30 gradient">
+						<div class="featured-img" style="background-image: url({{stations.station_img.url}});"></div>
+						<div class="text text-sm">
+							<span>{{stations.date|date}}</span>
+							<!-- <h2>{{stations.title}}</h2> -->
+						</div>
+					</a>
+					
+
+					<div class="two-col d-block d-md-flex justify-content-between">
+						{% for station in stations3 %}
+						<a href="{% url 'opening_prayer' %}" class="hentry v-height img-2 gradient">
+							<div class="featured-img" style="background-image: url('{{station.station_img.url }}');"></div>
+							<div class="text text-sm">
+								<!-- <span>{{station.date|date}}</span> -->
+								<!-- <h2>Don’t assume your user data in the cloud is safe</h2> -->
+							</div>
+						</a>
+						{% endfor %}
+						
+					</div>  
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	{% include 'blog/navigation/footer.html' %}
+
+    <!-- Preloader -->
+    {% include 'homeApp/base/homeApp/preload.html' %}
+{% endblock %}

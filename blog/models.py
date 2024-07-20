@@ -23,6 +23,14 @@ class My_blog(models.Model):
     
     def get_total_likes(self):
         return self.likes.all().counts()
+    
+    def ImageUrl(self):
+        try:
+            image = self.image.url
+            return image if image else ''
+        except ValueError:
+            return ''
+
     def __str__(self):
         return self.title +' | '+ str(self.post_date)
 
@@ -181,3 +189,20 @@ class OpeningPrayerImages(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Gallery(models.Model):
+    image =models.ImageField(upload_to ='gallery/')
+    date =models.DateTimeField(auto_now_add=True, null = True)
+
+    class Meta:
+        ordering = ['-date',]
+
+    def ImageUrl(self):
+        try:
+            image = self.image.url
+            return image if image else ''
+        except ValueError:
+            return ''
+
+    def __str__(self):
+        return self.image

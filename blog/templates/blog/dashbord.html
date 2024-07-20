@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class=" p-5">
-    <div class="col-md-6 mx-auto p-5 bg-dark text-white p-5">
+    <div class="col-md-6 mx-auto p-5 bg-dark text-white">
         <div class="shadow shadow-responsive shadow-info ">
             <h4 class="text-center bg-info">Helo, {{ user }}</h4>
             <h5 class="text-center text-white">Welcome to Sacred Heart of Jesus and Immaculate Heart of Mary</h5>
@@ -22,7 +22,7 @@
             {% else %}
                 <a class="text-info" href="{% url 'authentications:loggin' %}">Login</a>
             {% endif %}
-            <a class = "mx-4 text-info" href="{% url 'home' %}">Home</a>
+            <a class = "mx-4 text-info" href="{% url 'homeApp:index' %}">Home</a>
         </div>
             
             

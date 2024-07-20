@@ -52,7 +52,7 @@ def loggin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            return redirect('homeApp:index')
         else:
             messages.error(request, 'Invalid credentials') 
             return redirect('authentications:loggin')

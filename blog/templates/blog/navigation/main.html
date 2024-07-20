@@ -122,55 +122,7 @@
   </style> 
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark p-2" style="position: sticky; font-size: 0.8rem;;">
-    <div class="container">
-      <a class="navbar-brand text-white" href="{% url 'home' %}">Sacred Heart of Jesus...</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'galary' %}">Gallery</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'aboutView' %}">About us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link bg-success text-white" href="{% url 'dashbord' %}">Hello, {{ user }}</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'dashbord' %}" class="nav-link text-info">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'authentications:logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li class="nav-item mb-3">
-            <a class="nav-link bg-success text-white" href="{% url 'authentications:loggin' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link bg-success text-white mx-2" href="{% url 'authentications:signup' %}">Signup</a>
-          </li>
-          {% endif %}
-        </ul>
-        <div class="d-flex">
-          {% if user.is_staff %}
-          <a href="{% url 'blog_post' %}" class="nav-link text-danger">New Blog</a>
-          <a href="{% url 'dailyprayer' %}" class="nav-link text-danger">Daily Prayer</a>
-          <a href="{% url 'newsletter' %}" class="nav-link text-danger">Send Letter</a>
-          <a href="{% url 'create_novena' %}" class="nav-link text-danger">Create Novena</a>
-          {% endif %}
-          
-        </div>
-      </div>
-    </div>
-  </nav>
+ {% include 'blog/navigation/nav.html' %}
   
 <!-- beggining of carousel -->
 
@@ -224,11 +176,14 @@
       {% endblock %}
 
 
-{% block tag %}
+      {% block tag %}
 
-{% endblock %}
+      {% endblock %}
 
-      <!-- end of new foooter -->
+      <!-- preload -->
+      {% include 'homeApp/base/homeApp/preload.html' %}
+
+
       
     </div>
 
@@ -246,6 +201,19 @@
     document.write('You most loggin to have access to our prayers and many more...')
   }
 </script>
+
+    <!-- from homeApp -->
+    <script src="{% static 'homeApp/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'homeApp/js/tiny-slider.js' %}"></script>
+
+    <script src="{% static 'homeApp/js/flatpickr.min.js' %}"></script>
+
+
+    <script src="{% static 'homeApp/js/aos.js' %}"></script>
+    <script src="{% static 'homeApp/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'homeApp/js/navbar.js' %}"></script>
+    <script src="{% static 'homeApp/js/counter.js' %}"></script>
+    <script src="{% static 'homeApp/js/custom.js' %}"></script>
 
 </body>
 </html>

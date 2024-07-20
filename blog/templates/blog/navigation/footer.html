@@ -8,12 +8,13 @@
       <div class="col-md-2 mb-4">
         <h6 class="text-uppercase font-weight-bold">Navigations</h6>
         <ul class="list-unstyled">
-          <li><a href="{% url 'home' %}" class="text-muted">Home</a></li>
+          <li><a href="{% url 'homeApp:index' %}" class="text-muted">Home</a></li>
           <li><a href="{% url 'all_prayers' %}" class="text-muted">Prayer</a></li>
           <li><a href="{% url 'all_novena' %}" class="text-muted">Novenas</a></li>
           <li><a href="{% url 'opening_prayer' %}" class="text-muted">Stations of Cross</a></li>
           <li><a href="{% url 'galary' %}" class="text-muted">Gallery</a></li>
           <li><a class="text-muted" href="{% url 'aboutView' %}">About us</a></li>
+          <li><a class="text-muted" href="{% url 'home' %}">View old version</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-4">
@@ -65,7 +66,7 @@
   </div>
   <div class="bg-secondary py-2">
     <div class="container text-center text-white">
-      &copy; 2023 Sacred Heart of Jesus and Immaculate Heart of Mary | <a href="#" class="text-white">Privacy Policy</a>
+      &copy; 2023 Sacred Heart of Jesus and Immaculate Heart of Mary |<a href="#" class="text-white">Privacy Policy</a>
     </div>
   </div>
 </footer>

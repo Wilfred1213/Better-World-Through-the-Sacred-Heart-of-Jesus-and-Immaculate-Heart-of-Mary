@@ -6,15 +6,15 @@
 {% block content %}
 
 
-<div class="mx-auto w-100 p-5">
+<div class="mx-auto">
      
   <!-- beggining of prayers -->
-  <div class="row justify-content-center mx-3 bg-light">
+  <div class="row justify-content-center bg-light">
     {% for galary in page_obj %}
-    <div class="card col-sm-6 col-md-4 col-lg-4 mx-3 lead justify-content-center" style="width: 400px; height: auto;">
+    <div class="card col-sm-6 col-md-4 col-lg-4 mb-3 lead justify-content-center" style="width: 400px; height: auto;">
       <!-- <div class="card text-center lead" style="width: 280px; "> -->
         <div class="card-img-bottom">
-          <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ galary.image.url }}" style="width: 400px; height:auto">
+          <img class="card-img-bottom img-fluid img-thumbnail" src="{{ galary.ImageUrl }}" style="width: 400px; height:auto">
         </div>
         
     </div>

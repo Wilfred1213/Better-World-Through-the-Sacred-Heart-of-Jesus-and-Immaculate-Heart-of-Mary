@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import My_blog,Comment,Days
+from homeApp.models import FocolarePassword
 
 
 
@@ -55,3 +56,21 @@ class novenaDaysForm(forms.ModelForm):
     class Meta:
         model = Days
         fields =['day1', 'day2','day3','day4','day5','day6','day7','day8','day9', 'novena']
+
+
+class PasswordForm(forms.ModelForm):
+
+    class Meta:
+        model = FocolarePassword
+        fields = ('title', 'body', 'image', 'author', 'year')
+        widgets = {
+            'title': forms.TextInput(attrs ={'class': 'form-control'}),
+            'author': forms.TextInput(attrs ={'class': 'form-control'}),
+            'year': forms.TextInput(attrs ={'class': 'form-control'}),
+            'body': forms.Textarea(attrs ={'class': 'form-control'}),
+            'image': forms.FileInput(attrs ={'class': 'form-control'})
+        }
+# class PasswordForm(forms.ModelForm):
+#     class Meta:
+#         model = FocolarePassword
+#         fields =['title', 'body', 'image', 'author', 'year']
