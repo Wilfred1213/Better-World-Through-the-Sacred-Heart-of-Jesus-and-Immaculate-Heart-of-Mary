@@ -5,7 +5,6 @@ from django.contrib.messages import constants as messages
 # from .settings_local import *
 
 
-
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -32,7 +31,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'authentications',
     'homeApp',
-    
+    # 'simple_analytics',
+    'django_analytics_simple',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -45,7 +45,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    # 'simple_analytics.middleware.SimpleAnalyticsMiddleware',
+    # 'simple_analytics.middleware.SimpleAnalyticsTrackingMiddleware'
+    'django_analytics_simple.middleware.AnalyticsMiddleware',
+    ]
 
 ROOT_URLCONF = 'Better_world_blog.urls'
 
@@ -103,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
+
+ANALYTICS_LANGUAGE = 'en'
 
 LANGUAGE_CODE = 'en-us'
 
