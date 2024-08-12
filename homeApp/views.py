@@ -9,7 +9,7 @@ def index(request):
     all_blogs = My_blog.objects.all().order_by('-post_date')[:3]
     last_blog = My_blog.objects.all().order_by('post_date')[:3]
     first_blog = all_blogs.first()
-    dailyprayer = Dailyprayer.objects.first()
+    dailyprayer = Dailyprayer.objects.last()
 
     focolare = FocolarePassword.objects.all().order_by('-posted_date')[:4]
     prayer = Prayers.objects.all().order_by('date_posted')[:4]

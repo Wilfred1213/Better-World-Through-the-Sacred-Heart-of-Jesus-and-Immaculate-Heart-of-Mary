@@ -3,7 +3,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 
 # from .settings_local import *
-
+SECRET_KEY = '8j8dy05(#7n7^j303yj)0hs9139*vlg!m*ip_80y1ea%uaj_v^'
 
 DEBUG = True
 
