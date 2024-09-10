@@ -5,6 +5,7 @@ SECRET_KEY = 'a real secret key'
 DEBUG = True
 
 ALLOWED_HOSTS = ['bwtsjhihm.pacamara.dev','49.13.31.130']
+# ALLOWED_HOSTS = ['*']
 
 # This email settigns are for production
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -13,7 +14,7 @@ EMAIL_PORT =465
 EMAIL_USE_SSL=True
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = 'mathiaswilfred7@gmail.com'
-EMAIL_HOST_PASSWORD= ''
+EMAIL_HOST_PASSWORD= 'rhno myrl okmw uarc'
 
 # this one for development
-EMAIL_BACKEND = "EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

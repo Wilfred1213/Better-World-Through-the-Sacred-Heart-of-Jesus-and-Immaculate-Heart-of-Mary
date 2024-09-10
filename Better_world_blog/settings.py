@@ -2,11 +2,8 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
-# from .settings_local import *
+from .settings_local import *
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
 
 MESSAGE_TAGS ={
     messages.INFO: 'alert-secondary',
@@ -30,7 +27,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'authentications',
     'homeApp',
-    # 'simple_analytics',
+    
     'django_analytics_simple',
 ]
 
@@ -44,8 +41,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'simple_analytics.middleware.SimpleAnalyticsMiddleware',
-    # 'simple_analytics.middleware.SimpleAnalyticsTrackingMiddleware'
     'django_analytics_simple.middleware.AnalyticsMiddleware',
     ]
 
@@ -130,4 +125,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

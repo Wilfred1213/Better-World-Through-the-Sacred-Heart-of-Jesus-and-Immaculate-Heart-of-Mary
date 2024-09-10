@@ -6,25 +6,25 @@ from django.utils.html import strip_tags
 from .models import Dailyprayer, SubscribedUser, NewsLetter,Gallery, My_blog, Novena, PrayerIntro, Prayers
 from homeApp.models import FocolarePassword
 
-@receiver(post_save, sender=FocolarePassword)
-def send_daily_password_emails_handler(sender, instance, created, **kwargs):
-    if created:
-        subscribed_users = SubscribedUser.objects.all()
-        email_subject = 'Sacred Heart of Jesus - Focolare Daily Password'
-        email_template = 'blog/daily_password_email.html'
-        context = {
-            'dailypass': instance
-            }
-        html_message = render_to_string(email_template, context)
-        plain_message = strip_tags(html_message)
-        for user in subscribed_users:
-            send_mail(
-                email_subject,
-                plain_message,
-                'mathiaswilfred7@yahoo.com',
-                [user.email],
-                html_message=html_message
-            )
+# @receiver(post_save, sender=FocolarePassword)
+# def send_daily_password_emails_handler(sender, instance, created, **kwargs):
+#     if created:
+#         subscribed_users = SubscribedUser.objects.all()
+#         email_subject = 'Sacred Heart of Jesus - Focolare Daily Password'
+#         email_template = 'blog/daily_password_email.html'
+#         context = {
+#             'dailypass': instance
+#             }
+#         html_message = render_to_string(email_template, context)
+#         plain_message = strip_tags(html_message)
+#         for user in subscribed_users:
+#             send_mail(
+#                 email_subject,
+#                 plain_message,
+#                 'mathiaswilfred7@yahoo.com',
+#                 [user.email],
+#                 html_message=html_message
+#             )
 
 
 @receiver(post_save, sender=NewsLetter)
