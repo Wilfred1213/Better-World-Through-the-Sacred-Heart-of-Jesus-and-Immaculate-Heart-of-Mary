@@ -8,7 +8,7 @@
     <!-- image -->
     
   <div class="row justify-content-center mx-3 bg-light">
-    <h3 class="text-center lead pt-5">{{ random.title }}</h3>
+    <h3 class="text-center lead pt-5">{{ random.title|safe }}</h3>
     <div class="card col-sm-4 col-md-4 col-lg-4 col-xl-4 mx-3 lead my-5 justify-content-center" style="width: 600px;">
       <div class="card-img-bottom">
         <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ random.image.url }}" style="width: 600px; height: auto" alt="Card Image">
@@ -32,11 +32,11 @@
         <img class="card-img-bottom p-3 img-fluid img-thumbnail" src="{{ search.image.url }}" style="width: 500px; height:auto">
       </div>
       <div class="card-title">
-        <h5 class="text-center">{{ search.title }}</h5>
+        <h5 class="text-center">{{ search.title|safe }}</h5>
         <hr>
       </div>
       <div class="card-text">
-        <p>{{search.post_body | truncatewords:30}}</p>
+        <p>{{search.post_body | truncatewords:30|safe}}</p>
       </div>
     
       <div class="text-danger">{{ search.post_date }}</div>

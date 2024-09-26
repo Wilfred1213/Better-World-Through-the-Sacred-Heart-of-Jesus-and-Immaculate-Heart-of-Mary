@@ -11,7 +11,7 @@
       <div class="card bg-primary text-white mb-5">
         <img class="card-img-top" src="{{ stations_detail.stationimages.station_img.url }}" alt="{{ novenas.title }}" style="height:auto;">
         <div class="card-body">
-          <h2 class="card-title text-center font-weight-bold text-uppercase text-light mb-4">{{ novenas.title }}</h2>
+          <h2 class="card-title text-center font-weight-bold text-uppercase text-light mb-4">{{ novenas.title |safe}}</h2>
           <p class="card-text text-center lead">{{ stations_detail.post_body|safe }}</p>
           <div class="text-center text-dark font-weight-bold">Date Posted: {{ stations_detail.date|date }}</div>
         </div>
@@ -19,10 +19,10 @@
       <!-- Days go here -->
       <div class="card text-white mb-5 mx-auto" style="font-size: 1.5rem; font-family: 'Tahoma', sans-serif; text-align: justify; background-color: rgb(133, 56, 8);">
         <div class="card-body">
-          <h4 class="card-title font-weight-bold text-info text-center mb-4">{{stations_detail.title}}</h4>
+          <h4 class="card-title font-weight-bold text-info text-center mb-4">{{stations_detail.title|safe}}</h4>
           
           <div class="mb-4">
-            <h5 class="card-subtitle text-muted text-center pt-5">{{stations_detail.letuspray.heading}}</h5>
+            <h5 class="card-subtitle text-muted text-center pt-5">{{stations_detail.letuspray.heading|safe}}</h5>
             <hr class="">
             <p class="mb-5">{{ stations_detail.letuspray.we_ador |safe }}</p>
             

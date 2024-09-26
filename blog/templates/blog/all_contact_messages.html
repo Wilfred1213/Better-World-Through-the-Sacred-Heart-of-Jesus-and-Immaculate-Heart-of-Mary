@@ -1,0 +1,63 @@
+{% extends 'blog/navigation/main.html' %}
+{% load static %}
+{% block title %}All Contact message{% endblock %}
+
+{% block content %}
+<div class="container">
+        <!-- seaarch -->
+<div class="mx-auto text-center pt-5">
+  {% for message in messages %}
+  <div class="text-danger">
+      {{message}}
+  </div>
+  {% endfor %}
+</div>
+
+    <p class="text-light lead text-center">Your contacts</p>
+    
+    <div class="row">
+      {% for message in contacts %}
+      <div class="col-md-6 col-sm-6 col-lg-6 mt-4">
+        <div class="card mb-3">
+          <div class="card-header bg-primary text-white">
+            {{ message.name|safe }} | {{ message.email|safe }}
+          </div>
+          <div class="card-header bg-primary text-white">
+            Subject: {{ message.subject|safe }} 
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ message.message |safe}}</p>
+            <form action="." method="post" id="contact_id">
+                {% csrf_token %}
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <input type="hidden" name="message_id" value="{{ message.id }}">
+                        {% if message.read %}
+                            <!-- If the message is read, display this text -->
+                            <p class="text-white bg-secondary">You already read this</p>
+                        {% else %}
+                            <!-- If the message is not read, display the 'Mark as Read' button -->
+                            <form action="." method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="read" class="btn btn-primary">Mark as Read</button>
+                            </form>
+                        {% endif %}
+                        <a href="{% url 'homeApp:delete_contact' message.id %}" class="btn btn-primary">Delete message</a>
+                        <!-- <button type="submit" name="read" class="btn btn-primary" {% if message.read %}disabled  {% endif %}>Mark as Read</button> -->
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 and not forloop.last %}
+    </div>
+    <div class="row">
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% include 'blog/navigation/footer.html' %}
+
+  {% endblock %}

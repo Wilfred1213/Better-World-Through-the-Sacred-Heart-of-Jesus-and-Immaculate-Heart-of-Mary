@@ -16,5 +16,18 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = 'mathiaswilfred7@gmail.com'
 EMAIL_HOST_PASSWORD= 'rhno myrl okmw uarc'
 
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Timeout in seconds
+        }
+    }
+}
+
 # this one for development
 # EMAIL_BACKEND = "EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

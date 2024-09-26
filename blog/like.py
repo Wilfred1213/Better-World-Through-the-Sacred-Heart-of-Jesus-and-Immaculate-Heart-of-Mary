@@ -1,6 +1,8 @@
 # from xml.etree.ElementTree import Comment
 from . models import My_blog, Like, Slider,Comment
 from django.contrib import messages
+from homeApp.models import Contact
+from django.db.models import Count
 
 def new_likes(request):
     user = request.user
@@ -37,3 +39,10 @@ def authmessage(request):
 def slider(request):
     Slider.objects.all()
     return slider
+
+def count(request):
+    message = Contact.objects.all()
+    counting = message.filter(read=False).aggregate(count_msg = Count('read'))
+
+    return counting
+

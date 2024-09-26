@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-center text-center pt-5">
         <div class="col-lg-6">
-          <h1 class="heading text-white mb-3" data-aos="fade-up">Password</h1>
+          <h1 class="heading text-white mb-3" data-aos="fade-up">Catholic Saints</h1>
         </div>
       </div>
     </div>
@@ -29,30 +29,31 @@
       
       <div class="row posts-entry">
         <div class="col-lg-8">
-          {% for password in passwords %}
+          {% for saint in saints %}
           <div class="blog-entry d-flex blog-entry-search-item">
-            <a href="{% url 'homeApp:focolare_detail' password.id %}" class="img-link me-4">
-              <img src="{{password.ImageUrl}}" alt="Image" class="img-fluid">
+            <a href="{% url 'homeApp:saint_detail' saint.id %}" class="img-link me-4">
+              <img src="{{saint.ImageUrl}}" alt="Image" class="img-fluid">
             </a>
             <div>
-              <span class="date">Password of the day &bullet; <a href="{% url 'homeApp:focolare_detail' password.id %}">({{ password.posted_date|date:"l, d F Y" }})</a></span>
-              <h2><a href="{% url 'homeApp:focolare_detail' password.id %}">{{password.title|safe}}</a></h2>
+              <span class="date">Saints &bullet; <a href="{% url 'homeApp:saint_detail' saint.id %}">Updated: ({{ saint.updated_at|date:"l, d F Y" }})</a></span>
+              <h2><a href="{% url 'homeApp:saint_detail' saint.id %}">{{saint.name|safe}}</a></h2>
+              <p><a href="{% url 'homeApp:saint_detail' saint.id %}">{{saint.biography|safe|truncatewords:30}}</a></p>
               
-              <p><a href="{% url 'homeApp:focolare_detail' password.id %}" class="btn btn-sm btn-outline-primary">Read More</a></p>
+              <p><a href="{% url 'homeApp:saint_detail' saint.id %}" class="btn btn-sm btn-outline-primary">Read More</a></p>
             </div>
           </div>
           {% endfor %}
 
           <!-- pagination -->
           <div class="text-center text-light mb-5 pt-5">
-            {% if passwords.has_previous %}
+            {% if saints.has_previous %}
             <a href="?page=1" class="btn btn-outline-secondary">&laquo; First</a>
-            <a href="?page={{ passwords.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+            <a href="?page={{ saints.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
             {% endif %}
-            <span class="mx-3">{{ passwords.number }} of {{ passwords.paginator.num_pages }}</span>
-            {% if passwords.has_next %}
-            <a href="?page={{ passwords.next_page_number }}" class="btn btn-outline-secondary">Next</a>
-            <a href="?page={{ passwords.paginator.num_pages }}" class="btn btn-outline-secondary">Last &raquo;</a>
+            <span class="mx-3">{{ saints.number }} of {{ saints.paginator.num_pages }}</span>
+            {% if saints.has_next %}
+            <a href="?page={{ saints.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+            <a href="?page={{ saints.paginator.num_pages }}" class="btn btn-outline-secondary">Last &raquo;</a>
             {% endif %}
           </div>
           <!-- end of pagination -->
@@ -77,7 +78,7 @@
                   <a href="{% url 'blog_details' blog.id %}">
                     <img src="{{blog.image.url}}" alt="Image placeholder" class="me-4 rounded">
                     <div class="text">
-                      <h4>{{blog.title}}</h4>
+                      <h4>{{blog.title|safe}}</h4>
                       <div class="post-meta">
                         <span class="mr-2">{{blog.post_date|date}} </span>
                       </div>
@@ -97,6 +98,39 @@
     </div>
   </div>
 
+  <!-- entry for sacrament -->
+  <section class="section posts-entry posts-entry-sm bg-light">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Sacramentals </h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'homeApp:sacrament' %}" class="read-more">View All</a></div>
+			</div>
+			<div class="row">
+				{% for foco in sacraments %}
+				<div class="col-md-6 col-lg-3">
+					<div class="blog-entry">
+						<a href="{% url 'homeApp:sacramental_detail' foco.id %}" class="img-link">
+							<img src="{{foco.ImageUrl}}" alt="Image" class="img-fluid">
+						</a>
+						<span class="date">{{ foco.updated_at |date }}</span>
+						<h2><a href="{% url 'homeApp:sacramental_detail' foco.id %}">{{foco.name|safe}}</a></h2>
+						<p>{{foco.description| truncatewords:30|safe}}</p>
+						<!-- <p>{{foco.author|safe}}</p> -->
+						<!-- <p>{{foco.created_at}}</p> -->
+						<p><a href="{% url 'homeApp:sacramental_detail' foco.id %}" class="read-more">Continue Reading</a></p>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</section>
+   <!-- end -->
+
+
+ 
   {% include 'blog/navigation/footer.html' %}
 
     <!-- Preloader -->

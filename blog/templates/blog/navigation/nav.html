@@ -18,7 +18,10 @@
             <a class="nav-link" href="{% url 'homeApp:all_blogs' %}">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'homeApp:focolare' %}">Daily Password</a>
+            <a class="nav-link" href="{% url 'homeApp:sacrament' %}">Sacramentals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'homeApp:allsaints' %}">Saints</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'all_prayers' %}">Prayers</a>
@@ -33,9 +36,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'aboutView' %}">About us</a>
+            
           </li>
           <li class="nav-item">
-            <a class="nav-link bg-success text-white" href="{% url 'dashbord' %}">Hello, {{ user }}</a>
+            <a class="nav-link bg-success text-white" href="{% url 'dashbord' %}">Hi, {{ user }}</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'dashbord' %}" class="nav-link text-info">Dashboard</a>
@@ -71,7 +75,9 @@
           <a href="{% url 'dailyprayer' %}" class="nav-link text-danger">Daily Prayer</a>
           <a href="{% url 'newsletter' %}" class="nav-link text-danger">Send Letter</a>
           <a href="{% url 'create_novena' %}" class="nav-link text-danger">Create Novena</a>
-          <a href="{% url 'dailypassword' %}" class="nav-link text-danger">Post pasword</a>
+          <!-- <a href="{% url 'dailypassword' %}" class="nav-link text-danger">Post pasword</a> -->
+          <a href="{% url 'homeApp:contact' %}" class="nav-link text-danger">Contact</a>
+          <a href="{% url 'homeApp:contact_messages' %}" class="nav-link text-danger">Messages<badge class="bg-dark text-white"> ({{count.count_msg}})</badge></a>
           {% endif %}
           
         </div>

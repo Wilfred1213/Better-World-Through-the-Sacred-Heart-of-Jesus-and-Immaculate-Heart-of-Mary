@@ -141,13 +141,13 @@
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <div class="carousel-image mb-5" style="background-image: url('{{ slider.image.url }}');"></div>
               <div class="carousel-caption d-none d-md-block">
-                <h5 class="text-white">{{ slider.title }}</h5>
-                <p class="text-light mb-5">{{ slider.description }}</p>
+                <h5 class="text-white">{{ slider.title|safe }}</h5>
+                <p class="text-light mb-5">{{ slider.description |safe}}</p>
                 
               </div>
               <div class="carousel-caption d-block d-md-none">
-                <h5 class="text-white">{{ slider.title }}</h5>
-                <p class="text-light">{{ slider.description }}</p>
+                <h5 class="text-white">{{ slider.title|safe }}</h5>
+                <p class="text-light">{{ slider.description|safe }}</p>
                 <div class="text-center">
                  
                 </div>

@@ -46,7 +46,7 @@
 
 						<div class="text">
 							<span class="date">{{blog.posted_date}}</span>
-							<h2>{{blog.title}}</h2>
+							<h2>{{blog.title|safe}}</h2>
 						</div>
 					</a>
 					{% endfor %}
@@ -72,8 +72,8 @@
 						
 						<li>
 							<span class="date">{{dailys.date_posted}}</span>
-							<h3>{{dailys.title}}</h3>
-							<p>{{dailys.prayer}}</p>
+							<h3>{{dailys.title|safe}}</h3>
+							<p>{{dailys.prayer|safe}}</p>
 				
 						</li>
 						
@@ -92,8 +92,8 @@
 									<img src="{{prayer.image.url}}" alt="Image" class="img-fluid">
 								</a>
 								<span class="date">{{prayer.posted_date}}</span>
-								<h2><a href="{% url 'prayer_details' prayer.id %}">{{prayer.title}}</a></h2>
-								<p>{{prayer.prayer}}</p>
+								<h2><a href="{% url 'prayer_details' prayer.id %}">{{prayer.title|safe}}</a></h2>
+								<p>{{prayer.prayer|safe}}</p>
 								<p><a href="{% url 'prayer_details' prayer.id %}" class="btn btn-sm btn-outline-primary">Read More</a></p>
 								
 							</div>
@@ -110,8 +110,8 @@
 						{% for prayer in prayers %}
 						<li>
 							<span class="date">{{prayer.date_posted}}</span>
-							<h3><a href="{% url 'prayer_details' prayer.id %}">{{ prayer.title }}</a></h3>
-							<p>{{ prayer.description| truncatewords:20 }}</p>
+							<h3><a href="{% url 'prayer_details' prayer.id %}">{{ prayer.title |safe}}</a></h3>
+							<p>{{ prayer.description| truncatewords:20 |safe}}</p>
 							<p><a href="{% url 'prayer_details' prayer.id %}" class="read-more">Continue Reading</a></p>
 						</li>
 						{% endfor %}
@@ -129,23 +129,23 @@
 		<div class="container">
 			<div class="row mb-4">
 				<div class="col-sm-6">
-					<h2 class="posts-entry-title">Daily Focolare Password </h2>
+					<h2 class="posts-entry-title">Sacramentals </h2>
 				</div>
-				<div class="col-sm-6 text-sm-end"><a href="{% url 'homeApp:focolare' %}" class="read-more">View All</a></div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'homeApp:sacrament' %}" class="read-more">View All</a></div>
 			</div>
 			<div class="row">
-				{% for foco in focolares %}
+				{% for foco in sacraments %}
 				<div class="col-md-6 col-lg-3">
 					<div class="blog-entry">
-						<a href="{% url 'homeApp:focolare_detail' foco.id %}" class="img-link">
+						<a href="{% url 'homeApp:sacramental_detail' foco.id %}" class="img-link">
 							<img src="{{foco.ImageUrl}}" alt="Image" class="img-fluid">
 						</a>
-						<span class="date">{{ foco.posted_date |date }}</span>
-						<h2><a href="{% url 'homeApp:focolare_detail' foco.id %}">{{foco.title|safe}}</a></h2>
-						<p>{{foco.body| truncatewords:30|safe}}</p>
-						<p>{{foco.author}}</p>
-						<p>{{foco.year}}</p>
-						<p><a href="{% url 'homeApp:focolare_detail' foco.id %}" class="read-more">Continue Reading</a></p>
+						<span class="date">{{ foco.updated_at |date }}</span>
+						<h2><a href="{% url 'homeApp:sacramental_detail' foco.id %}">{{foco.name|safe}}</a></h2>
+						<p>{{foco.description| truncatewords:30|safe}}</p>
+						<!-- <p>{{foco.author|safe}}</p> -->
+						<!-- <p>{{foco.created_at}}</p> -->
+						<p><a href="{% url 'homeApp:sacramental_detail' foco.id %}" class="read-more">Continue Reading</a></p>
 					</div>
 				</div>
 				{% endfor %}
@@ -192,6 +192,36 @@
 			
 		</div>
 	</section>
+	<!-- Start posts-entry for saints -->
+	
+	<section class="section posts-entry posts-entry-sm bg-light">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-sm-6">
+					<h2 class="posts-entry-title">Catholic Saints </h2>
+				</div>
+				<div class="col-sm-6 text-sm-end"><a href="{% url 'homeApp:allsaints' %}" class="read-more">View All</a></div>
+			</div>
+			<div class="row">
+				{% for foco in saints %}
+				<div class="col-md-6 col-lg-3">
+					<div class="blog-entry">
+						<a href="{% url 'homeApp:saint_detail' foco.id %}" class="img-link">
+							<img src="{{foco.ImageUrl}}" alt="Image" class="img-fluid">
+						</a>
+						<span class="date">{{ foco.updated_at |date }}</span>
+						<h2><a href="{% url 'homeApp:saint_detail' foco.id %}">{{foco.name|safe}}</a></h2>
+						<p>{{foco.description| truncatewords:30|safe}}</p>
+						
+						<p><a href="{% url 'homeApp:saint_detail' foco.id %}" class="read-more">Continue Reading</a></p>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</section>
+	<!-- End posts-entry -->
 
 	<div class="section bg-light">
 		<div class="container">

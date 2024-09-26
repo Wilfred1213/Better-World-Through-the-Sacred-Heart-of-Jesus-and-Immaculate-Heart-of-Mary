@@ -14,7 +14,7 @@
     <div class="col-sm-12 col-lg-6 mx-auto px-5 ">
       <div class="col-sm-12 mx-3 ">
         <div class="col-sm-12">
-          <h3 class="col-sm-12">{{ blog.title }}</h3>
+          <h3 class="col-sm-12">{{ blog.title|safe }}</h3>
         </div>
         <div class="row ">
           <div class="col-sm-9" style="width: 300px;">
@@ -33,7 +33,7 @@
     
         
         <div class="text-center">
-          <p class=" pt-3 bg-dark text-white">{{ blog.post_body | truncatewords:50 }}<a href="{% url 'blog_details' blog.id %}">Continue Reading</a></p>
+          <p class=" pt-3 bg-dark text-white">{{ blog.post_body | truncatewords:50|safe }}<a href="{% url 'blog_details' blog.id %}">Continue Reading</a></p>
         </div>
   
       <!--message and like  -->

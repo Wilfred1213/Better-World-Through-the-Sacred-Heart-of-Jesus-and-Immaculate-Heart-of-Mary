@@ -40,10 +40,10 @@
     
     <div class="col-sm-8 col-md-6 col-lg-4 mx-2 my-2 p-3 bg-info shadow">
       <div class="text-center text-white bg-dark py-2">
-        <h4>{{ search.title }}</h4>
+        <h4>{{ search.title|safe }}</h4>
       </div>
       <hr>
-      <p class="lead">{{ search.description }}.</p>
+      <p class="lead">{{ search.description|safe }}.</p>
       <hr>
       <a href="{% url 'all_prayers' %}" class="btn btn-primary">Back to Prayers</a>
     </div>
@@ -61,10 +61,10 @@
       
       <div class="col-sm-8 col-md-6 col-lg-4 mx-2 my-2 p-3 bg-info shadow">
         <div class="text-center text-white bg-dark py-2">
-          <h4>{{ details.title }}</h4>
+          <h4>{{ details.title|safe }}</h4>
         </div>
         <hr>
-        <p class="lead">{{ details.description }}.</p>
+        <p class="lead">{{ details.description|safe }}.</p>
         <hr>
         <a href="{% url 'all_prayers' %}" class="btn btn-primary">Back to Prayers</a>
       </div>
