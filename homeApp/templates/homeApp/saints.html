@@ -1,9 +1,11 @@
 
 {% extends 'homeApp/base/homeApp/base.html' %}
 {% load static %}
-{% block title %}Daily Password {% endblock %}
+{% block title %}Saints {% endblock %}
 
 {% block content %}
+
+{% if not saintsearches %}
   <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
       <div class="site-mobile-menu-close">
@@ -63,9 +65,9 @@
         <div class="col-lg-4 sidebar">
 
           <div class="sidebar-box search-form-wrap mb-4">
-            <form action="#" class="sidebar-search-form">
+            <form action="." class="sidebar-search-form" method="get">
               <span class="bi-search"></span>
-              <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+              <input type="text" class="form-control" name="search" id="s" placeholder="Type a keyword and hit enter">
             </form>
           </div>
           <!-- END sidebar-box -->
@@ -128,6 +130,10 @@
 		</div>
 	</section>
    <!-- end -->
+  
+  {% else %}
+  {% include 'homeApp/base/homeApp/search.html' %}
+  {% endif %}
 
 
  

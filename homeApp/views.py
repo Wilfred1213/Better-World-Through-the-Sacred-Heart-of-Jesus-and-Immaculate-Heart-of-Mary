@@ -6,6 +6,7 @@ from blog.search import blogsearch
 from django.contrib import messages
 from django.db.models import Count
 from blog.like import count
+from blog.search import sacramentalsearch, saintsearch
 
 # Create your views here.
 def index(request):
@@ -54,6 +55,10 @@ def sacrament(request):
     saints = SaintOfTheDay.objects.all().order_by('-updated_at')[:4]
     blog = My_blog.objects.all().order_by('-post_date')[:4]
 
+    # search
+    search = sacramentalsearch(request) 
+    # end
+
     # pagination
     paginator = Paginator(sacrament, 3)
     page_number = request.GET.get('page')
@@ -71,7 +76,8 @@ def sacrament(request):
         'sacraments':page_obj,
         'saints':saints,
         'blogs':blog,
-        'count':counting
+        'count':counting,
+        'searches': search
     }
     return render(request, 'homeApp/sacramental.html', context)
 
@@ -99,6 +105,10 @@ def allsaints(request):
     blog = My_blog.objects.all().order_by('-post_date')[:4]
     sacrament = Sacramental.objects.all().order_by('-created_at')[:4]
 
+    # search
+    search = saintsearch(request) 
+    # end
+
     # pagination
     paginator = Paginator(saints, 3)
     page_number = request.GET.get('page')
@@ -114,7 +124,7 @@ def allsaints(request):
 
     context = {
         'saints':page_obj,
-        # 'saints':saints,
+        'saintsearches':search,
         'blogs':blog,
         'count':counting,
         'sacraments':sacrament

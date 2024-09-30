@@ -1,9 +1,10 @@
 
 {% extends 'homeApp/base/homeApp/base.html' %}
 {% load static %}
-{% block title %}Daily Password {% endblock %}
+{% block title %}Sacramentals {% endblock %}
 
 {% block content %}
+{% if not searches %}
   <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
       <div class="site-mobile-menu-close">
@@ -13,6 +14,7 @@
     <div class="site-mobile-menu-body"></div>
   </div>
 
+  
   
   <div class="hero overlay inner-page bg-primary py-5">
     <div class="container">
@@ -63,9 +65,9 @@
         <div class="col-lg-4 sidebar">
 
           <div class="sidebar-box search-form-wrap mb-4">
-            <form action="#" class="sidebar-search-form">
+            <form action="#" class="sidebar-search-form" method="get">
               <span class="bi-search"></span>
-              <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+              <input type="text" class="form-control" name="search" id="s" placeholder="Type a keyword and hit enter">
             </form>
           </div>
           <!-- END sidebar-box -->
@@ -131,6 +133,10 @@
     </div>
   </section>
   <!-- End posts-entry -->
+
+  {% else %}
+  {% include 'homeApp/base/homeApp/search.html' %}
+  {% endif %}
 
 
   {% include 'blog/navigation/footer.html' %}
