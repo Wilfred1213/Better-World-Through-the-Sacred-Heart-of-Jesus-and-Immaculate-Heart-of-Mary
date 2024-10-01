@@ -1,6 +1,6 @@
 {% if searches %}
 {% for sacrament in searches %}
-<div class="blog-entry d-flex blog-entry-search-item pt-5">
+<div class="blog-entry d-flex blog-entry-search-item pt-5 mb-5 mx-3">
   <a href="{% url 'homeApp:saint_detail' sacrament.id %}" class="img-link me-4">
     <img src="{{sacrament.ImageUrl}}" alt="Image" class="img-fluid" style="width: 300px; height: 300px;">
   </a>
@@ -13,7 +13,7 @@
 {% endfor %}
 {% elif saintsearches %}
 {% for saint in saintsearches %}
-<div class="blog-entry d-flex blog-entry-search-item pt-5 mb-5">
+<div class="blog-entry d-flex blog-entry-search-item pt-5 mb-5 mx-3">
   <a href="{% url 'homeApp:saint_detail' saint.id %}" class="img-link me-4">
     <img src="{{saint.ImageUrl}}" alt="Image" class="img-fluid" style="width: 300px; height: 300px;">
   </a>
@@ -25,5 +25,7 @@
 </div>
 {% endfor %}
 
+{% else %}
+<span class="mx-auto text-center">No result found</span>
 {% endif %}
 <!-- end search -->
